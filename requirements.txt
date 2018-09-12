@@ -1,2 +1,4 @@
 django
 django-sass-processor
+gunicorn
+dj_database_url
