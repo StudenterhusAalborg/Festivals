@@ -1,0 +1,6 @@
+{% extends 'partials/base-northern-winter-beat.html' %}
+
+{% block content %}
+    <h3>{{ concert.artist.name }} - {{ concert.start_time }}</h3>
+    {{ concert.artist.description }}
+{% endblock %}
