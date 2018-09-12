@@ -1,6 +1,6 @@
 
-static_served
-.idea
+static_served/
+.idea/
 # Created by https://www.gitignore.io
 
 ### OSX ###
@@ -37,6 +37,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+venv/
 env/
 build/
 develop-eggs/
