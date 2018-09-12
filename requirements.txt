@@ -3,3 +3,4 @@ django-sass-processor
 gunicorn
 dj_database_url
 psycopg2
+django_heroku
