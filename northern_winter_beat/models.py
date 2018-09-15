@@ -22,7 +22,7 @@ class Page(models.Model):
 
 class Artist(models.Model):
     name = models.CharField(max_length=128)
-    description = models.TextField()
+    description = models.TextField(blank=True, default="")
     slug = models.CharField(max_length=64)
     subtitle = models.CharField(max_length=128, blank=True, default="")
     youtube_video_link = models.CharField(max_length=128, blank=True, default="")
@@ -35,9 +35,13 @@ class Artist(models.Model):
         return self.name
 
     @property
+    def name_len(self):
+        return len(self.name)
+
+    @property
     def body(self):
-        return ((self.description + (f"<br><br> {self.embedded_youtube}" if self.youtube_video_link else "")).\
-            replace("\r\n","<br>").replace("\n","<br>"))
+        return ((self.description + (f"<br><br> {self.embedded_youtube}" if self.youtube_video_link else "")). \
+                replace("\r\n", "<br>").replace("\n", "<br>"))
 
     @property
     def embedded_youtube(self):
@@ -52,17 +56,3 @@ class Post(models.Model):
 
     def __str__(self):
         return f"{self.title} ({self.created})"
-
-
-class Concert(models.Model):
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
-    start_time = models.DateTimeField()
-    slug = models.CharField(max_length=64)
-    length = models.IntegerField(help_text="in minutes")
-
-    def save(self, **kwargs):
-        self.slug = slugify(f"{self.artist.name}-{self.start_time}")
-        super().save(**kwargs)
-
-    def __str__(self):
-        return f"{self.artist.name} - {self.start_time} ({self.length} minutes)"

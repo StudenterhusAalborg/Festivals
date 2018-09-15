@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from northern_winter_beat.models import Page, Artist, Concert, Post
+from northern_winter_beat.models import Page, Artist, Post
 
 
 @admin.register(Page)
@@ -13,11 +13,6 @@ class PageAdmin(admin.ModelAdmin):
 class ArtistAdmin(admin.ModelAdmin):
     exclude = ["pk", "slug"]
     list_display = ["name", "subtitle"]
-
-
-@admin.register(Concert)
-class ConcertAdmin(admin.ModelAdmin):
-    exclude = ["pk", "slug"]
 
 
 @admin.register(Post)

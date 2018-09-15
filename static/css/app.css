@@ -200,6 +200,16 @@ p {
 .modal-dialog {
   max-width: 600px; }
 
+.big {
+  font-family: 'League Gothic', cursive;
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
+  margin-bottom: 20px; }
+
+a {
+  text-decoration: underline; }
+
 .card-post-header {
   display: block;
   font-family: 'League Gothic', cursive;

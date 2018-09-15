@@ -1,13 +1,24 @@
 {% extends 'partials/base-northern-winter-beat.html' %}
 {% load color_helpers %}
 {% block content %}
-
+    <div class="row justify-content-center big">
+        <a href="https://www.eventim-light.com/dk/shop/5a69ef7ae0c91704d20c95d3/da/event/5b891d8acf978900016684b3/">Begrænset antal ”early bird” billetter i salg!</a>
+    </div>
     <div class="row">
-
         {% for artist in artists %}
-            <div class="col-md-4 col-lg-3 col-sm-6 col-12">
-                <a data-toggle="modal"  data-target="#exampleModal"
-                   onclick="setModal('{{ artist.name }}',`{{ artist.body }}`)">
+            <div class="
+                {% if artist.name_len > 15 %}
+                    col-md-6 col-lg-6
+                {% else %}
+                    col-md-4 col-lg-3
+                {% endif %}
+                col-sm-6 col-12">
+                <a
+                        {% if artist.description %}
+                            data-toggle="modal"  data-target="#exampleModal"
+                            onclick="setModal('{{ artist.name }}',`{{ artist.body }}`)"
+                        {% endif %}
+                >
                     <div class="artist box justify-center {{ artist.pk|artist_background_color }}">
                         {{ artist.name }}
                         {% if artist.subtitle %}
@@ -17,6 +28,9 @@
                 </a>
             </div>
         {% endfor %}
+    </div>
+    <div class="row justify-content-center big">
+        Flere bands kommer snart!
     </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
