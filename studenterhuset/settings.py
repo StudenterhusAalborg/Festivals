@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'gir4g7x#*m6(q)pe92%pzw_zw!a_=iq5de1g$@)dukw#9qywqb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True#False
 
-ALLOWED_HOSTS = ["127.0.0.1","winterbeat.dk","winterbeat.herokuapp.com"]
+ALLOWED_HOSTS = ["127.0.0.1:8000","winterbeat.dk","winterbeat.herokuapp.com"]
 
 
 # Application definition
