@@ -6,7 +6,6 @@ from northern_winter_beat.models import Page, Artist
 
 
 def index(request):
-    raise Exception()
     return render(request, "winter-beat/index.html", {
         "artists": Artist.objects.all(),
     })
