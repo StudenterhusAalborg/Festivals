@@ -34,18 +34,19 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-            'datefmt' : "%d/%b/%Y %H:%M:%S"
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
         },
         'simple': {
-            'format': '%(levelname)s %(message)s'
+            'format': '{levelname} {message}',
+            'style': '{',
         },
     },
     'handlers': {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': 'mysite.log',
+            'filename': os.path.join(BASE_DIR, 'app.log'),
             'formatter': 'verbose'
         },
     },
@@ -54,10 +55,6 @@ LOGGING = {
             'handlers':['file'],
             'propagate': True,
             'level':'DEBUG',
-        },
-        'MYAPP': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
         },
     }
 }
@@ -168,4 +165,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_served/')
 
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
+
+
+try:
+    from studenterhuset.local_settings import *
+except:
+    pass
