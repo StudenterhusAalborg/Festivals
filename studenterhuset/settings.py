@@ -24,11 +24,43 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'gir4g7x#*m6(q)pe92%pzw_zw!a_=iq5de1g$@)dukw#9qywqb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True#False
+DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1:8000","winterbeat.dk","winterbeat.herokuapp.com"]
+ALLOWED_HOSTS = ["winterbeat.dk","winterbeat.herokuapp.com"]
 
-
+# settings.py
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'mysite.log',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers':['file'],
+            'propagate': True,
+            'level':'DEBUG',
+        },
+        'MYAPP': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+    }
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -119,11 +151,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
