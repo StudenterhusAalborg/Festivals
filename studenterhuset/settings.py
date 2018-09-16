@@ -49,10 +49,15 @@ LOGGING = {
             'filename': os.path.join(BASE_DIR, 'app.log'),
             'formatter': 'verbose'
         },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
     },
     'loggers': {
         'django': {
-            'handlers':['file'],
+            'handlers':['console'],
             'propagate': True,
             'level':'DEBUG',
         },
@@ -165,7 +170,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_served/')
 
 
 # Activate Django-Heroku.
-#django_heroku.settings(locals())
+django_heroku.settings(locals())
 
 
 try:
