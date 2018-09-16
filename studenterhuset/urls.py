@@ -21,6 +21,7 @@ import northern_winter_beat.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('winterbeat/', include(northern_winter_beat.urls))
+    # TODO add more festivals here.
+    path('', include(northern_winter_beat.urls))
 
 ]
