@@ -6,3 +6,4 @@ psycopg2
 django_heroku
 libsass
 django-compressor
+whitenoise
