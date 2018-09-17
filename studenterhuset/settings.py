@@ -27,7 +27,7 @@ SECRET_KEY = 'gir4g7x#*m6(q)pe92%pzw_zw!a_=iq5de1g$@)dukw#9qywqb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["winterbeat.dk","www.winterbeat.dk","winterbeat.herokuapp.com"]
+ALLOWED_HOSTS = ["winterbeat.dk","1.winterbeat.dk","winterbeat.herokuapp.com"]
 
 # settings.py
 LOGGING = {
