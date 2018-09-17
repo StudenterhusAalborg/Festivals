@@ -4,8 +4,10 @@
     <div class="row justify-content-center">
         {% for artist in artists %}
             <div class="
-                {% if artist.name_len > 14 %}
+                {% if artist.name_len > 20 %}
                     col-md-6 col-lg-6
+                {% elif artist.name_len > 14 %}
+                    col-md-6 col-lg-4
                 {% else %}
                     col-md-4 col-lg-3
                 {% endif %}
