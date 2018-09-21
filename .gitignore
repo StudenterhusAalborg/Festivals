@@ -72,7 +72,7 @@ nosetests.xml
 coverage.xml
 
 # Translations
-*.mo
+#*.mo
 *.pot
 
 # Sphinx documentation
