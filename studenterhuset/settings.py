@@ -149,8 +149,8 @@ LANGUAGE_CODE = 'da'
 TIME_ZONE = 'Europe/Copenhagen'
 
 LANGUAGES = (
-    ('da', _('Danish')),
     ('en', _('English')),
+    ('da', _('Danish')),
 )
 
 
