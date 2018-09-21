@@ -1,5 +1,6 @@
 {% extends 'partials/base-northern-winter-beat-splash.html' %}
 {% load color_helpers %}
+{% load i18n %}
 {% block content %}
     <div class="row justify-content-center">
         {% for artist in artists %}
@@ -29,7 +30,7 @@
         {% endfor %}
     </div>
     <div class="row justify-content-center big">
-        Flere bands kommer snart!
+        {% trans "More bands to be announched soon!" %}
     </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

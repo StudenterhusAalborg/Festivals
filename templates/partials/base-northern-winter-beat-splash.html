@@ -30,6 +30,11 @@
                 <path fill="#fff" d="M330 512V322h64l9-74h-73v-47c0-22 6-36 37-36h39V99c-7-1-30-3-57-3-57 0-95 34-95 98v54h-64v74h64v190z"></path>
             </svg>
         </a>
+        {% get_current_language as LANGUAGE_CODE %}
+        <a class="navbar-item" href="/{% if LANGUAGE_CODE == "en"%}da{% else %}en{% endif %}/">
+           <img height="24" src="{% if LANGUAGE_CODE == "en" %}{% static "images/danish.png" %}{% else %}{% static "images/english.png" %}{% endif %}"/>
+        </a>
+
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8 justify-content-center">
@@ -39,9 +44,9 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-12">
-            <p class="big text-center">Partout billetter i salg!<br>
+            <p class="big text-center">{% trans "Partout tickets for sale!" %}<br>
                 <a href="https://www.eventim-light.com/dk/shop/5a69ef7ae0c91704d20c95d3/da/event/5ba1f74e07d77600017fe47c/">
-                    Køb her
+                    {% trans "Buy now" %}
                 </a>
             </p>
         </div>
@@ -90,7 +95,7 @@
       "email" : "booking@studenterhuset.dk",
       "telephone" : "+4531410474",
       "url" : "https://winterbeat.dk",
-      "logo" : "{% static 'images/logo-og.png' %}",
+      "logo" : "{% static 'images/logo-2019.jpg' %}",
       "sameAs" : [
         "https://www.facebook.com/northernwinterbeat",
         "https://www.instagram.com/winterbadge/"
