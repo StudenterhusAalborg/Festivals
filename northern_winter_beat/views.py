@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from django.views.decorators.clickjacking import xframe_options_exempt
 
-from northern_winter_beat.models import Page, Artist
+from northern_winter_beat.models import Page, Artist, WinterbeatSettings
 
 
 def index(request):

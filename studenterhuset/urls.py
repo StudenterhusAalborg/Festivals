@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 #  https://stackoverflow.com/questions/9474619/django-per-domain-urlconf
+from django.utils.translation import ugettext_lazy
+
 import northern_winter_beat.urls
 
 urlpatterns = i18n_patterns(
@@ -26,3 +28,12 @@ urlpatterns = i18n_patterns(
     path('', include(northern_winter_beat.urls))
 
 )
+
+# Text to put at the end of each page's <title>.
+admin.site.site_title = ugettext_lazy('Studenthouse festivals')
+
+# Text to put in each page's <h1> (and above login form).
+admin.site.site_header = ugettext_lazy('Studenthouse festivals administration')
+
+# Text to put at the top of the admin index page.
+admin.site.index_title = ugettext_lazy('Studenthouse festivals administration')

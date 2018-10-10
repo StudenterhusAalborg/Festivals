@@ -1,8 +1,16 @@
-{% extends 'partials/base-northern-winter-beat-splash.html' %}
+{% extends 'partials/base-northern-winter-beat.html' %}
 {% load color_helpers %}
 {% load i18n %}
+{% load solo_tags %}
 {% block content %}
+    {% get_solo 'northern_winter_beat.winterbeatsettings' as settings %}
+    <div class="row justify-content-center big">
+            <p class="text-center">
+                {{ settings.top_text }}
+            </p>
+    </div>
     <div class="row justify-content-center">
+
         {% for artist in artists %}
             <div class="
                 {% if artist.name_len > 20 %}
@@ -30,7 +38,9 @@
         {% endfor %}
     </div>
     <div class="row justify-content-center big">
-        {% trans "More bands to be announched soon!" %}
+        <p>
+            {{ settings.bottom_text }}
+        </p>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

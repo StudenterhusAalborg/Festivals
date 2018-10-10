@@ -76,6 +76,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'northern_winter_beat.apps.NorthernWinterBeatConfig',
 
+    'solo',
     'sass_processor',
 
 ]
