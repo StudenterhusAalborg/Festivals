@@ -153,7 +153,7 @@ class Artist(models.Model):
     class Meta:
         verbose_name = ugettext_lazy("artist")
         verbose_name_plural = ugettext_lazy("artists")
-
+        ordering = ("pk",)
 
 class Post(models.Model):
     title_da, title_en = create_field_for_both_languages(
