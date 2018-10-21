@@ -8,6 +8,7 @@ from django.utils.safestring import mark_safe
 from django.utils.text import format_lazy
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy, get_language, ugettext
+from orderable.models import Orderable
 from solo.models import SingletonModel
 
 
@@ -104,10 +105,15 @@ class Page(models.Model):
         verbose_name_plural = ugettext_lazy("pages")
 
 
-class Artist(models.Model):
+class Artist(Orderable):
     name = models.CharField(
         ugettext_lazy("name"),
         max_length=128
+    )
+    one_line = models.BooleanField(
+        ugettext_lazy("One line"),
+        default=False,
+        help_text=ugettext_lazy("Do you want title on splash screen on one singular line?")
     )
     description_da, description_en = create_field_for_both_languages(
         models.TextField,
@@ -124,6 +130,7 @@ class Artist(models.Model):
         max_length=128,
         blank=True,
         default="")
+
 
     def save(self, **kwargs):
         self.slug = slugify(self.name)
@@ -150,10 +157,11 @@ class Artist(models.Model):
         link = self.youtube_video_link.replace("watch?v=", "embed/")
         return f'<div class="embed-responsive embed-responsive-16by9"><iframe src="{link}" width="100%" class="embed-responsive-item" allowfullscreen></iframe></div>'
 
-    class Meta:
+    class Meta(Orderable.Meta):
         verbose_name = ugettext_lazy("artist")
         verbose_name_plural = ugettext_lazy("artists")
-        ordering = ("pk",)
+        ordering = ("sort_order",)
+
 
 class Post(models.Model):
     title_da, title_en = create_field_for_both_languages(

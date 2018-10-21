@@ -3,6 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from django.contrib.admin import AdminSite
 from django.utils.translation import ugettext_lazy
+from orderable.admin import OrderableAdmin
 from solo.admin import SingletonModelAdmin
 
 from northern_winter_beat.models import Page, Artist, Post, WinterbeatSettings
@@ -30,9 +31,9 @@ class PageAdmin(admin.ModelAdmin):
 
 
 @admin.register(Artist)
-class ArtistAdmin(admin.ModelAdmin):
+class ArtistAdmin(OrderableAdmin):
     exclude = ["pk", "slug"]
-    list_display = ["name", "subtitle"]
+    list_display = ["name", "subtitle", 'sort_order_display']
 
 
 @admin.register(Post)

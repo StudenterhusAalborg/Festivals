@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-10 14:33+0200\n"
+"POT-Creation-Date: 2018-10-21 10:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,107 +18,115 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: northern_winter_beat/admin.py:15 studenterhuset/urls.py:33
+#: northern_winter_beat/admin.py:16 studenterhuset/urls.py:33
 msgid "Studenthouse festivals"
 msgstr "Studenterhuset's festivaler"
 
-#: northern_winter_beat/admin.py:18 northern_winter_beat/admin.py:21
+#: northern_winter_beat/admin.py:19 northern_winter_beat/admin.py:22
 #: studenterhuset/urls.py:36 studenterhuset/urls.py:39
 msgid "Studenthouse festivals administration"
 msgstr "Studenterhuset's festival administration"
 
-#: northern_winter_beat/models.py:25 studenterhuset/settings.py:154
+#: northern_winter_beat/models.py:26 studenterhuset/settings.py:155
 msgid "Danish"
 msgstr "Dansk"
 
-#: northern_winter_beat/models.py:25 studenterhuset/settings.py:153
+#: northern_winter_beat/models.py:26 studenterhuset/settings.py:154
 msgid "English"
 msgstr "Engelsk"
 
-#: northern_winter_beat/models.py:33
+#: northern_winter_beat/models.py:34
 msgid "Top text"
 msgstr "Øverste text"
 
-#: northern_winter_beat/models.py:34
+#: northern_winter_beat/models.py:35
 msgid "the paragraph above the list of bands. Is hidden if empty"
 msgstr "paragraffen over listen af bands. Den er gemt hvis denne er tom."
 
-#: northern_winter_beat/models.py:39
+#: northern_winter_beat/models.py:40
 msgid "Bottom text"
 msgstr "Bund text"
 
-#: northern_winter_beat/models.py:40
+#: northern_winter_beat/models.py:41
 msgid "The paragraph below the list of bands. It is hidden if empty"
 msgstr "Paragraffen over listen af bands. Den er gemt hvis denne er tom."
 
-#: northern_winter_beat/models.py:45
+#: northern_winter_beat/models.py:46
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: northern_winter_beat/models.py:46
+#: northern_winter_beat/models.py:47
 msgid ""
 "The description that is used when linking to winterbeat from another page"
 msgstr ""
 "Beskrivelsen der bliver brugt når man linker til winterbeat fra et andet "
 "website (evt facebook)"
 
-#: northern_winter_beat/models.py:51
+#: northern_winter_beat/models.py:52
 msgid "Show navigation bar"
 msgstr "Vis navigations bar"
 
-#: northern_winter_beat/models.py:52
+#: northern_winter_beat/models.py:53
 msgid "Show the bar of pages on top or not."
 msgstr ""
 "Skal navigations baren (af under sider) vises eller ej (den der er i toppen)"
 
-#: northern_winter_beat/models.py:57 northern_winter_beat/models.py:67
+#: northern_winter_beat/models.py:58 northern_winter_beat/models.py:68
 msgid "Winterbeat Settings"
 msgstr "Winterbeat indstillinger"
 
-#: northern_winter_beat/models.py:73 northern_winter_beat/models.py:161
+#: northern_winter_beat/models.py:74 northern_winter_beat/models.py:169
 msgid "title"
 msgstr "titel"
 
-#: northern_winter_beat/models.py:77
+#: northern_winter_beat/models.py:78
 msgid "slug"
 msgstr "slug"
 
-#: northern_winter_beat/models.py:83 northern_winter_beat/models.py:166
+#: northern_winter_beat/models.py:84 northern_winter_beat/models.py:174
 msgid "body"
 msgstr "Krop"
 
-#: northern_winter_beat/models.py:103
+#: northern_winter_beat/models.py:104
 msgid "page"
 msgstr "side"
 
-#: northern_winter_beat/models.py:104
+#: northern_winter_beat/models.py:105
 msgid "pages"
 msgstr "sider"
 
-#: northern_winter_beat/models.py:109
+#: northern_winter_beat/models.py:110
 msgid "name"
 msgstr "navn"
 
 #: northern_winter_beat/models.py:114
+msgid "One line"
+msgstr "En linje"
+
+#: northern_winter_beat/models.py:116
+msgid "Do you want title on splash screen on one singular line?"
+msgstr "Vil du have titlen på start siden, på en linje for sig selv?"
+
+#: northern_winter_beat/models.py:120
 msgid "description"
 msgstr "beskrivelse"
 
-#: northern_winter_beat/models.py:119
+#: northern_winter_beat/models.py:125
 msgid "subtitle"
 msgstr "under-titel"
 
-#: northern_winter_beat/models.py:154
+#: northern_winter_beat/models.py:161
 msgid "artist"
 msgstr "artist"
 
-#: northern_winter_beat/models.py:155
+#: northern_winter_beat/models.py:162
 msgid "artists"
 msgstr "artister"
 
-#: northern_winter_beat/models.py:178
+#: northern_winter_beat/models.py:186
 msgid "post"
 msgstr "opslag"
 
-#: northern_winter_beat/models.py:179
+#: northern_winter_beat/models.py:187
 msgid "posts"
 msgstr "opslag"

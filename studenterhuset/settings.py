@@ -78,6 +78,7 @@ INSTALLED_APPS = [
 
     'solo',
     'sass_processor',
+    'orderable',
 
 ]
 
