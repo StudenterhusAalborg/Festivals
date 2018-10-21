@@ -13,12 +13,11 @@
 
         {% for artist in artists %}
             {% if artist.one_line %}
-                <div class="col-md-3"></div>
+                <div class="col-12">
+                <div class="row justify-content-center">
             {% endif %}
+
             <div class="
-            {% if artist.one_line %}
-                col-md-6
-            {% else %}
                 {% if artist.name_len > 20 %}
                     col-md-6 col-lg-6
                 {% elif artist.name_len > 14 %}
@@ -27,7 +26,6 @@
                     col-md-4 col-lg-3
                 {% endif %}
                 col-sm-6 col-12
-            {% endif %}
 ">
                 <a
                         {% if artist.description %}
@@ -45,7 +43,7 @@
             </div>
 
             {% if artist.one_line %}
-                <div class="col-md-3"></div>
+                </div></div>
             {% endif %}
         {% endfor %}
     </div>

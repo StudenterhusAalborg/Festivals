@@ -131,7 +131,6 @@ class Artist(Orderable):
         blank=True,
         default="")
 
-
     def save(self, **kwargs):
         self.slug = slugify(self.name)
         super().save(**kwargs)

@@ -32,7 +32,7 @@ class PageAdmin(admin.ModelAdmin):
 
 @admin.register(Artist)
 class ArtistAdmin(OrderableAdmin):
-    exclude = ["pk", "slug"]
+    exclude = ["pk", "slug","sort_order"]
     list_display = ["name", "subtitle", 'sort_order_display']
 
 
