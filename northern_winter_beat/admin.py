@@ -32,8 +32,8 @@ class PageAdmin(admin.ModelAdmin):
 
 @admin.register(Artist)
 class ArtistAdmin(OrderableAdmin):
-    exclude = ["pk", "slug","sort_order"]
-    list_display = ["name", "subtitle", 'sort_order_display']
+    exclude = ["pk", "slug", "sort_order"]
+    list_display = ["name", "release_date", "subtitle", 'sort_order_display']
 
 
 @admin.register(Post)

@@ -8,6 +8,7 @@ from django.utils.safestring import mark_safe
 from django.utils.text import format_lazy
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy, get_language, ugettext
+from orderable.managers import OrderableManager
 from orderable.models import Orderable
 from solo.models import SingletonModel
 
@@ -105,6 +106,11 @@ class Page(models.Model):
         verbose_name_plural = ugettext_lazy("pages")
 
 
+class ArtistManager(OrderableManager):
+    def released(self):
+        return self.filter(release_date__lte=now())
+
+
 class Artist(Orderable):
     name = models.CharField(
         ugettext_lazy("name"),
@@ -130,6 +136,14 @@ class Artist(Orderable):
         max_length=128,
         blank=True,
         default="")
+
+    release_date = models.DateTimeField(
+        ugettext_lazy("Release date"),
+        help_text=ugettext_lazy("The time when this band is going to be released on the website."),
+        default=now
+    )
+
+    objects = ArtistManager()
 
     def save(self, **kwargs):
         self.slug = slugify(self.name)

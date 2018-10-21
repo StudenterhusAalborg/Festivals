@@ -7,7 +7,7 @@ from northern_winter_beat.models import Page, Artist, WinterbeatSettings
 
 def index(request):
     return render(request, "winter-beat/index.html", {
-        "artists": Artist.objects.all(),
+        "artists": Artist.objects.released(),
     })
 
 
