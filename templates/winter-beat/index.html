@@ -33,7 +33,7 @@
                             onclick="setModal('{{ artist.name }}',`{{ artist.body }}`)"
                         {% endif %}
                 >
-                    <div class="artist box justify-center {{ artist.pk|artist_background_color }}">
+                    <div class="artist box shadow justify-center {{ artist.pk|artist_background_color }}">
                         {{ artist.name }}
                         {% if artist.subtitle %}
                             <p class="small no-margin">{{ artist.subtitle }}</p>

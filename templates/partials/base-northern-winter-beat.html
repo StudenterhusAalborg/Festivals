@@ -35,7 +35,14 @@
         </div>
 
         {%  if settings.show_nav_bar %}
-            <div class="w-full text-center">
+            <div class="navbar-collapse w-full text-center">
+                {% if posts %}
+                    <a class="navbar-item" href="{% url "winterbeat:list_posts" %}">{% trans 'News' %}</a>
+                {% endif %}
+                <a class="navbar-item" href="{% url "winterbeat:home" %}">{% trans 'Lineup' %}</a>
+                {% if settings.ticket_link %}
+                    <a class="navbar-item" href="{{ settings.ticket_link }}">{% trans 'Tickets' %}</a>
+                {% endif %}
                 {% for page in pages %}
                     <a class="navbar-item" href="{% url "winterbeat:page" page.slug %}">{{ page.title }}</a>
                 {% endfor %}

@@ -36,8 +36,16 @@ a {
   cursor: pointer;
   display: block;
   font-family: 'League Gothic', cursive;
-  font-size: 2rem;
-  padding: 15px;
+  @media (min-width: 500px) {
+    font-size: 2rem;
+    padding: 15px;
+  }
+
+  @media(max-width: 500px) {
+    font-size: 1.6rem;
+    padding: 10px;
+  }
+
   position: relative;
   text-align: center;
   text-transform: uppercase;
@@ -77,22 +85,6 @@ a {
     background-color: $blue-dark;
   }
 
-  &:before {
-    background: rgba(0,0,0,.1);
-    content: "";
-    position: absolute;
-    top: -2%;
-    left: -2%;
-    width: 104%;
-    height: 104%;
-    z-index: -1;
-    transition: all 100ms ease-in-out;
-    transform: rotate(3deg) translateZ(-1em);
-  }
-
-  &:hover:before {
-    transform: rotate(-3deg) translateZ(-1em);
-  }
 
   .text-lg {
     text-shadow: 1px 1px 0 rgba(255,255,255,.5);
@@ -124,7 +116,13 @@ p {
 .navbar-item {
   color: #333;
   font-family: 'League Gothic';
-  font-size: 1.5em;
+  @media(min-width:500px) {
+    font-size: 1.5em;
+  }
+
+  @media(max-width:500px) {
+    font-size: 1.2em;
+  }
   text-decoration: none;
   text-transform: uppercase;
   margin-right: 20px;
@@ -147,11 +145,32 @@ p {
   margin: 0 !important;
 }
 
+.shadow {
+
+  &:before {
+    background: rgba(0,0,0,.1);
+    content: "";
+    position: absolute;
+    top: -2%;
+    left: -2%;
+    width: 104%;
+    height: 104%;
+    z-index: -1;
+    transition: all 100ms ease-in-out;
+    transform: rotate(3deg) translateZ(-1em);
+  }
+
+  &:hover:before {
+    transform: rotate(-3deg) translateZ(-1em);
+  }
+}
+
 /* Posts */
 .card-post {
   margin-top: 30px;
   font-size: 1rem;
-  background: #ecded6;
+  background: #f8f8f8;/*#ecded6;*/
+  margin-bottom: 50px;
 }
 .post-date {
   color: #888888;
@@ -222,31 +241,5 @@ a {
   text-decoration: underline;
 }
 .card-post-header {
-  display: block;
-  font-family: 'League Gothic', cursive;
-  font-size: 2rem;
-  padding: 10px;
-  position: relative;
-  text-align: center;
-  text-transform: uppercase;
-  word-wrap: normal;
-  transform-style: preserve-3d;
-  text-shadow: 2px 2px 0 rgba(255,255,255,.5);
-  text-decoration: none;
-  margin: -5px;
-  transform: rotate(2deg) translateY(-0.5em);
-
-  background: $background-2;
-  &:before {
-    background: rgba(0,0,0,.15);
-    content: "";
-    position: absolute;
-    top: 5%;
-    left: 1%;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    transition: all 100ms ease-in-out;
-    transform: translateZ(-1em);
-  }
+  margin: -25px -10px 25px;
 }

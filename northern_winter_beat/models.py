@@ -55,6 +55,30 @@ class WinterbeatSettings(SingletonModel):
         default=False
     )
 
+    youtube_link = models.CharField(
+        ugettext_lazy("Link to Youtube"),
+        help_text=ugettext_lazy("If you have a link to a playlist on Youtube relevant to the festival"),
+        max_length=255,
+        null=True,
+        blank=True
+    )
+
+    spotify_link = models.CharField(
+        ugettext_lazy("Link to Spotify"),
+        help_text=ugettext_lazy("If you have a link to a playlist on Spotify relevant to the festival"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+
+    ticket_link = models.CharField(
+        ugettext_lazy("Link to tickets"),
+        help_text=ugettext_lazy("This link will show up as the tickets sales"),
+        max_length=255,
+        null=True,
+        blank=True
+    )
+
     def __str__(self):
         return ugettext("Winterbeat Settings")
 
@@ -192,9 +216,13 @@ class Post(models.Model):
     def title(self):
         return self.title_da if get_language() == "da" else self.title_en
 
+    def body(self):
+        return self.body_da if get_language() == "da" else self.body_en
+
     def __str__(self):
-        return f"{self.title} ({self.created})"
+        return f"{self.title_en} ({self.created})"
 
     class Meta:
         verbose_name = ugettext_lazy("post")
         verbose_name_plural = ugettext_lazy("posts")
+        ordering = ('-created',)
