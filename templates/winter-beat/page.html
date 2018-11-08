@@ -2,5 +2,5 @@
 
 {% block content %}
 <h3>{{ page.title }}</h3>
-    {{ page.body|safe }}
+    {{ page.body|safe|linebreaks }}
 {% endblock %}
