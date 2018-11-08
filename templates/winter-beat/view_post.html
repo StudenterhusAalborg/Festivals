@@ -1,0 +1,23 @@
+{% extends 'partials/base-northern-winter-beat.html' %}
+{% load color_helpers %}
+{% load i18n %}
+{% load solo_tags %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="card card-post">
+                <div class="card-post-header box blue-dark">{{ post.title|safe }}</div>
+                <div class="card-body">
+                    <p class="post-date">
+                        {{ post.created|date:"D j. M Y" }}
+                    </p>
+                    <div class="card-text">
+                        {{ post.body|safe|linebreaks }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+

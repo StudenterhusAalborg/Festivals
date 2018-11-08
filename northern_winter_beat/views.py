@@ -29,10 +29,10 @@ def show_artist(request, artist_slug):
     })
 
 
+def view_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, "winter-beat/view_post.html", {"post": post})
+
+
 def list_posts(request):
-    data = {
-        "posts": Post.objects.all() \
-            if request.user.is_authenticated and request.user.is_superuser \
-            else Post.objects.filter(created__lte=now())
-    }
-    return render(request, "winter-beat/list_posts.html", data)
+    return render(request, "winter-beat/list_posts.html", {})

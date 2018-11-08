@@ -8,7 +8,11 @@
             <div class="col-12">
 
                         <div class="card card-post">
-                            <div class="card-post-header box blue-dark">{{ post.title|safe }}</div>
+                            <div class="card-post-header box blue-dark">
+                                <a href="{% url 'winterbeat:view_post' post.pk %}">
+                                    {{ post.title|safe }}
+                                </a>
+                            </div>
                             <div class="card-body">
                                 <p class="post-date">
                                     {{ post.created|date:"D j. M Y" }}
