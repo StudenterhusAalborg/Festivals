@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 # Create your views here.
+from django.utils.timezone import now
 from django.views.decorators.clickjacking import xframe_options_exempt
 
 from northern_winter_beat.models import Page, Artist, WinterbeatSettings, Post
@@ -29,4 +30,4 @@ def show_artist(request, artist_slug):
 
 
 def list_posts(request):
-    return render(request, "winter-beat/list_posts.html", {"posts": Post.objects.all()})
+    return render(request, "winter-beat/list_posts.html", {"posts": Post.objects.filter(created__lte=now())})
