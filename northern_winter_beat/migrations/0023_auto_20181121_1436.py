@@ -9,6 +9,7 @@ def convert_newlines_to_br(apps, schema_editor):
     for post in Post.objects.all():
         post.body_en = linebreaks(post.body_en)
         post.body_da = linebreaks(post.body_da)
+        post.save()
 
 class Migration(migrations.Migration):
 
@@ -17,5 +18,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(convert_newlines_to_br)
+        migrations.RunPython(convert_newlines_to_br, lambda x, y: None)
     ]
