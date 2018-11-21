@@ -74,8 +74,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'northern_winter_beat.apps.NorthernWinterBeatConfig',
 
+    'django_summernote',
     'solo',
     'sass_processor',
     'orderable',
@@ -166,8 +168,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-# commenting this out makes it crash.
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/

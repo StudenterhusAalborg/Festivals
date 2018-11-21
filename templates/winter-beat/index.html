@@ -17,7 +17,7 @@
                 <div class="row justify-content-center">
             {% endif %}
 
-            <div class="
+        <div class="
                 {% if artist.name_len > 20 %}
                     col-md-6 col-lg-6
                 {% elif artist.name_len > 14 %}
@@ -27,24 +27,24 @@
                 {% endif %}
                 col-sm-6 col-12
 ">
-                <a
-                        {% if artist.description %}
-                            data-toggle="modal"  data-target="#exampleModal"
-                            onclick="setModal('{{ artist.name }}',`{{ artist.body }}`)"
-                        {% endif %}
-                >
-                    <div class="artist box shadow justify-center {{ artist.pk|artist_background_color }}">
-                        {{ artist.name }}
-                        {% if artist.subtitle %}
-                            <p class="small no-margin">{{ artist.subtitle }}</p>
-                        {% endif %}
-                    </div>
-                </a>
-            </div>
+            <a
+                    {% if artist.description %}
+                        data-toggle="modal"  data-target="#exampleModal"
+                        onclick="setModal('{{ artist.name }}',`{{ artist.body }}`)"
+                    {% endif %}
+            >
+                <div class="artist box shadow justify-center {{ artist.pk|artist_background_color }}">
+                    {{ artist.name }}
+                    {% if artist.subtitle %}
+                        <p class="small no-margin">{{ artist.subtitle }}</p>
+                    {% endif %}
+                </div>
+            </a>
+        </div>
 
-            {% if artist.one_line %}
-                </div></div>
-            {% endif %}
+        {% if artist.one_line %}
+            </div></div>
+        {% endif %}
         {% endfor %}
     </div>
     <div class="row justify-content-center big">

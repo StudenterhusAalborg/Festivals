@@ -24,6 +24,7 @@ import northern_winter_beat.urls
 
 urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
+    path('summernote/', include('django_summernote.urls')),
     # TODO add more festivals here.
     path('', include(northern_winter_beat.urls))
 

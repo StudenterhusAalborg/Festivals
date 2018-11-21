@@ -1,0 +1,12 @@
+
+{% load i18n %}
+{% load l10n %}
+    {% if settings.start_date.year == settings.end_date.year %}
+        {% if settings.start_date.month == settings.end_date.month %}
+            {{ settings.start_date|date:"d" }} <i style="font-size: 85%" class="fas fa-arrow-right"></i> {{ settings.end_date|date:"d E Y"}}
+        {% else %}
+            {{ settings.start_date|date:"d E"}}  <i style="font-size: 85%" class="fas fa-arrow-right"></i> {{ settings.end_date|date:"d E Y" }}
+        {% endif %}
+    {% else %}
+        {{ settings.start_date }} <i style="font-size: 85%" class="fas fa-arrow-right"></i> {{ settings.end_date }}
+    {% endif %}

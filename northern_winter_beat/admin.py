@@ -3,6 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from django.contrib.admin import AdminSite
 from django.utils.translation import ugettext_lazy
+from django_summernote.admin import SummernoteModelAdmin
 from orderable.admin import OrderableAdmin
 from solo.admin import SingletonModelAdmin
 
@@ -26,17 +27,21 @@ admin_site = MyAdminSite()
 
 
 @admin.register(Page)
-class PageAdmin(admin.ModelAdmin):
+class PageAdmin(SummernoteModelAdmin):
     exclude = ["pk", "slug"]
+    summernote_fields = ["body_da", "body_en"]
 
 
 @admin.register(Artist)
-class ArtistAdmin(OrderableAdmin):
+class ArtistAdmin(OrderableAdmin, SummernoteModelAdmin):
     exclude = ["pk", "slug", "sort_order"]
     list_display = ["name", "release_date", "subtitle", 'sort_order_display']
+    summernote_fields = ["body_da", "body_en"]
 
 
 @admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(SummernoteModelAdmin):
     exclude = ["pk", "slug"]
     list_display = ["title", "created"]
+    summernote_fields = ["body_da", "body_en"]
+

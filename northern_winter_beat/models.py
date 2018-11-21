@@ -79,6 +79,16 @@ class WinterbeatSettings(SingletonModel):
         blank=True
     )
 
+    start_date = models.DateField(
+        ugettext_lazy("Start date"),
+        help_text=ugettext_lazy("The date the festival starts")
+    )
+
+    end_date = models.DateField(
+        ugettext_lazy("End date"),
+        help_text=ugettext_lazy("The date the festival ends")
+    )
+
     def __str__(self):
         return ugettext("Winterbeat Settings")
 
