@@ -36,7 +36,7 @@ class PageAdmin(SummernoteModelAdmin):
 class ArtistAdmin(OrderableAdmin, SummernoteModelAdmin):
     exclude = ["pk", "slug", "sort_order"]
     list_display = ["name", "release_date", "subtitle", 'sort_order_display']
-    summernote_fields = ["body_da", "body_en"]
+    summernote_fields = ["description_da", "description_en"]
 
 
 @admin.register(Post)

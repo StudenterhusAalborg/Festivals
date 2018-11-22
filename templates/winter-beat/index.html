@@ -28,9 +28,9 @@
                 col-sm-6 col-12
 ">
             <a
-                    {% if artist.description %}
+                    {% if artist.body %}
                         data-toggle="modal"  data-target="#exampleModal"
-                        onclick="setModal('{{ artist.name }}',`{{ artist.body }}`)"
+                        onclick="setModal({{ artist.pk }})"
                     {% endif %}
             >
                 <div class="artist box shadow justify-center {{ artist.pk|artist_background_color }}">
@@ -78,10 +78,20 @@
 
 {% block additional_javascript %}
     <script>
+        const bands = {
+            {% for artist in artists %}
+                {% if artist.body %}
+                    {{artist.pk}}: {
+                        'name':`{{ artist.name }}`,
+                        'body':`{{ artist.body }}`
+                },
+                {% endif %}
+        {% endfor %}
+        }
 
-        function setModal(name, description) {
-            $('#exampleModalLabel').text(name);
-            $('#modalBody').html(description);
+        function setModal(pk) {
+            $('#exampleModalLabel').text(bands[pk].name);
+            $('#modalBody').html(bands[pk].body);
         }
         $('#exampleModal').on('shown.bs.modal', function () {
             $('#exampleInput').trigger('focus')

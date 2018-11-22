@@ -196,13 +196,16 @@ class Artist(Orderable):
 
     @property
     def body(self):
-        return mark_safe((self.description + (f"<br><br> {self.embedded_youtube}" if self.youtube_video_link else "")).
-                         replace("\r\n", "<br>").replace("\n", "<br>"))
+        out = mark_safe(self.description + (f"<br><br> {self.embedded_youtube}" if self.youtube_video_link else ""))
+        print(out)
+        return out
 
     @property
     def embedded_youtube(self):
         link = self.youtube_video_link.replace("watch?v=", "embed/")
-        return f'<div class="embed-responsive embed-responsive-16by9"><iframe src="{link}" width="100%" class="embed-responsive-item" allowfullscreen></iframe></div>'
+        print(link)
+        return f'<div class="embed-responsive embed-responsive-16by9"><iframe src="{link}" width="100%" ' \
+               f'class="embed-responsive-item" allowfullscreen></iframe></div> '
 
     class Meta(Orderable.Meta):
         verbose_name = ugettext_lazy("artist")
