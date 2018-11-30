@@ -177,6 +177,13 @@ class Artist(Orderable):
         default=now
     )
 
+    date = models.DateField(
+        ugettext_lazy("date"),
+        help_text=ugettext_lazy('The day the artist is going to play'),
+        blank=True,
+        null=True,
+    )
+
     objects = ArtistManager()
 
     def save(self, **kwargs):
@@ -197,7 +204,6 @@ class Artist(Orderable):
     @property
     def body(self):
         out = mark_safe(self.description + (f"<br><br> {self.embedded_youtube}" if self.youtube_video_link else ""))
-        print(out)
         return out
 
     @property

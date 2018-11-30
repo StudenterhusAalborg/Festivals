@@ -41,6 +41,7 @@
                     <a class="navbar-item" href="{% url "winterbeat:list_posts" %}">{% trans 'News' %}</a>
                 {% endif %}
                 <a class="navbar-item" href="{% url "winterbeat:home" %}">{% trans 'Lineup' %}</a>
+                <a class="navbar-item" href="{% url "winterbeat:timeline" %}">{% trans 'Timeline' %}</a>
                 {% if settings.ticket_link %}
                     <a class="navbar-item" href="{{ settings.ticket_link }}">{% trans 'Tickets' %}</a>
                 {% endif %}

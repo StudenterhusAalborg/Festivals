@@ -3,23 +3,31 @@
 {% load i18n %}
 {% load solo_tags %}
 {% block content %}
-    {% get_solo 'northern_winter_beat.winterbeatsettings' as settings %}
-    <div class="row justify-content-center big">
-        <p class="text-center">
-            {{ settings.top_text }}
-        </p>
-    </div>
-    <div class="row justify-content-center">
 
-        {% for artist in artists %}
-            {% include 'winter-beat/artist_box.html' %}
-        {% endfor %}
+    <div class="row justify-content-center">
+        {% if dates %}
+            {% regroup artists by date as dates %}
+            {% for day in dates %}
+                {% if day.grouper %}
+                    <div class="col-4 col-md-4 col-sm-12 col-xs-12 justify-content-center">
+                        <div class="row justify-content-center big">
+                            <p class="text-center">
+                                {{ day.grouper|date:"l" }}
+                            </p>
+                        </div>
+                        {% for artist in day.list %}
+                            {% with force_big=1 %}
+                                {% include 'winter-beat/artist_box.html' %}
+                            {% endwith %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <b>Coming soon</b>
+        {% endif %}
     </div>
-    <div class="row justify-content-center big">
-        <p>
-            {{ settings.bottom_text }}
-        </p>
-    </div>
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -42,18 +50,20 @@
             </div>
         </div>
     </div>
+
 {% endblock %}
+
 
 {% block additional_javascript %}
     <script>
         const bands = {
-            {% for artist in artists %}
-                {% if artist.body %}
-                    {{artist.pk}}: {
-                        'name':`{{ artist.name }}`,
-                        'body':`{{ artist.body }}`
-                },
-                {% endif %}
+        {% for artist in artists %}
+            {% if artist.body %}
+                {{artist.pk}}: {
+                'name':`{{ artist.name }}`,
+                    'body':`{{ artist.body }}`
+            },
+            {% endif %}
         {% endfor %}
         }
 

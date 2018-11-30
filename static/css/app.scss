@@ -21,6 +21,10 @@ html {
   max-width: 900px;
 }
 
+.modal {
+  overflow-y:auto;
+}
+
 body {
   background: $background;
   color: #333;

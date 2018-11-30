@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-21 13:44+0100\n"
+"POT-Creation-Date: 2018-11-27 19:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: northern_winter_beat/admin.py:16 studenterhuset/urls.py:34
+#: northern_winter_beat/admin.py:17 studenterhuset/urls.py:34
 msgid "Studenthouse festivals"
 msgstr "Studenterhuset's festivaler"
 
-#: northern_winter_beat/admin.py:19 northern_winter_beat/admin.py:22
+#: northern_winter_beat/admin.py:20 northern_winter_beat/admin.py:23
 #: studenterhuset/urls.py:37 studenterhuset/urls.py:40
 msgid "Studenthouse festivals administration"
 msgstr "Studenterhuset's festival administration"
@@ -117,7 +117,7 @@ msgstr "Datoen festivalen slutter"
 msgid "Winterbeat Settings"
 msgstr "Winterbeat indstillinger"
 
-#: northern_winter_beat/models.py:109 northern_winter_beat/models.py:216
+#: northern_winter_beat/models.py:109 northern_winter_beat/models.py:225
 msgid "title"
 msgstr "titel"
 
@@ -125,7 +125,7 @@ msgstr "titel"
 msgid "slug"
 msgstr "slug"
 
-#: northern_winter_beat/models.py:119 northern_winter_beat/models.py:221
+#: northern_winter_beat/models.py:119 northern_winter_beat/models.py:230
 msgid "body"
 msgstr "Krop"
 
@@ -149,7 +149,7 @@ msgstr "En linje"
 msgid "Do you want title on splash screen on one singular line?"
 msgstr "Vil du have titlen på start siden, på en linje for sig selv?"
 
-#: northern_winter_beat/models.py:160 templates/partials/time-from-to.html:7
+#: northern_winter_beat/models.py:160
 msgid "description"
 msgstr "beskrivelse"
 
@@ -165,31 +165,43 @@ msgstr "offentliggørelsestidspunkt"
 msgid "The time when this band is going to be released on the website."
 msgstr "Tidspunktet dette band skal offentligtgøres"
 
-#: northern_winter_beat/models.py:208
+#: northern_winter_beat/models.py:181
+msgid "date"
+msgstr "Dato"
+
+#: northern_winter_beat/models.py:182
+msgid "The day the artist is going to play"
+msgstr "Datoen artisten kommer til at spille"
+
+#: northern_winter_beat/models.py:217
 msgid "artist"
 msgstr "artist"
 
-#: northern_winter_beat/models.py:209
+#: northern_winter_beat/models.py:218
 msgid "artists"
 msgstr "artister"
 
-#: northern_winter_beat/models.py:236
+#: northern_winter_beat/models.py:245
 msgid "post"
 msgstr "opslag"
 
-#: northern_winter_beat/models.py:237
+#: northern_winter_beat/models.py:246
 msgid "posts"
 msgstr "opslag"
 
-#: templates/partials/base-northern-winter-beat.html:40
+#: templates/partials/base-northern-winter-beat.html:41
 msgid "News"
 msgstr "Nyheder"
 
-#: templates/partials/base-northern-winter-beat.html:42
+#: templates/partials/base-northern-winter-beat.html:43
 msgid "Lineup"
 msgstr "Lineup"
 
 #: templates/partials/base-northern-winter-beat.html:44
+msgid "Timeline"
+msgstr "Tidsplan"
+
+#: templates/partials/base-northern-winter-beat.html:46
 msgid "Tickets"
 msgstr "Biletter"
 
@@ -1434,8 +1446,6 @@ msgid "Only authenticated users are allowed"
 msgstr ""
 
 #: venv/lib/python3.7/site-packages/django_summernote/views.py:76
-#, fuzzy
-#| msgid "No file was submitted."
 msgid "No files were requested"
 msgstr "Ingen fil blev indsendt."
 
@@ -1581,10 +1591,8 @@ msgid "%r is not callable"
 msgstr ""
 
 #: venv/lib/python3.7/site-packages/gunicorn/argparse_compat.py:2259
-#, fuzzy, python-format
-#| msgid "Enter a valid value."
 msgid "invalid %s value: %r"
-msgstr "Indtast en gyldig værdi."
+msgstr "Invalid %s værdi: %r"
 
 #: venv/lib/python3.7/site-packages/gunicorn/argparse_compat.py:2269
 #, python-format
