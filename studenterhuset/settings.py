@@ -18,7 +18,6 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 from django.utils.translation import gettext_lazy as _
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -28,7 +27,7 @@ SECRET_KEY = 'gir4g7x#*m6(q)pe92%pzw_zw!a_=iq5de1g$@)dukw#9qywqb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["winterbeat.dk","www.winterbeat.dk","winterbeat.herokuapp.com"]
+ALLOWED_HOSTS = ["winterbeat.dk", "www.winterbeat.dk", "winterbeat.herokuapp.com"]
 
 # settings.py
 LOGGING = {
@@ -59,9 +58,9 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers':['console'],
+            'handlers': ['console'],
             'propagate': True,
-            'level':'DEBUG',
+            'level': 'DEBUG',
         },
     }
 }
@@ -75,8 +74,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
+
     'northern_winter_beat.apps.NorthernWinterBeatConfig',
 
+    'storages',
     'django_summernote',
     'solo',
     'sass_processor',
@@ -117,14 +119,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'studenterhuset.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
     'default': dj_database_url.config(conn_max_age=600)
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -144,7 +144,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -157,7 +156,6 @@ LANGUAGES = (
     ('da', _('Danish')),
 )
 
-
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
@@ -168,13 +166,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
@@ -183,7 +181,20 @@ STATICFILES_DIRS = (
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_served/')
 
 
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'stud-festivals'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_DEFAULT_ACL = 'public-read'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
 
+AWS_LOCATION = 'festivals'
+#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
+DEFAULT_FILE_STORAGE = 'studenterhuset.storage_backends.MediaStorage'
 
 try:
     from studenterhuset.local_settings import *

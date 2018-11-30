@@ -16,8 +16,9 @@ Including another URLconf
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
-#  https://stackoverflow.com/questions/9474619/django-per-domain-urlconf
 from django.utils.translation import ugettext_lazy
 
 import northern_winter_beat.urls
@@ -28,7 +29,7 @@ urlpatterns = i18n_patterns(
     # TODO add more festivals here.
     path('', include(northern_winter_beat.urls))
 
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Text to put at the end of each page's <title>.
 admin.site.site_title = ugettext_lazy('Studenthouse festivals')
