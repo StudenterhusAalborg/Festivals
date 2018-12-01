@@ -49,11 +49,12 @@
                 {% endfor %}
                 {% include 'partials/static_nav_bar_elements.html' %}
             </div>
-            <p class="text-center">
-                <b>
-                    {% include 'partials/time-from-to.html' %}
-                </b>
-            </p>
+
+            <div class="row justify-content-center big" style="margin-bottom: -80px;">
+                <p class="text-center">
+                        {% include 'partials/time-from-to.html' %}
+                </p>
+            </div>
         {% endif %}
     </div>
 </header>
