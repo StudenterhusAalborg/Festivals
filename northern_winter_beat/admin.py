@@ -37,6 +37,12 @@ class PageAdmin(SummernoteModelAdmin):
 class ArtistAdmin(OrderableAdmin, SummernoteModelAdmin):
 
     def get_changeform_initial_data(self, request):
+        """
+        The default playday should be the first day of the festival.
+        This is so it's easier than to scroll all the way through and make sure it is the correct day
+        :param request:
+        :return:
+        """
         return {'date': WinterbeatSettings.get_solo().start_date}
 
     exclude = ["pk", "slug", "sort_order"]

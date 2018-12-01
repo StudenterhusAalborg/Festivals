@@ -1,5 +1,6 @@
 from typing import Type, Tuple
 
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Field
 from django.template.defaultfilters import slugify
@@ -183,12 +184,20 @@ class Artist(Orderable):
         default=now
     )
 
-    date = models.DateField(
-        ugettext_lazy("date"),
+    concert_date = models.DateField(
+        ugettext_lazy("concert date"),
         help_text=ugettext_lazy('The day the artist is going to play'),
         blank=True,
         null=True,
     )
+
+    def clean(self):
+        super().clean()
+        settings = WinterbeatSettings.get_solo()
+        if settings.start_date <= self.concert_date <= settings.end_date:
+            raise ValidationError(ugettext(
+                "Concert date has to be while the festival is running (between %{start_date} and %{end_date})"
+            ) % {'start_date': settings.start_date.strftime('%x'), 'end_date': settings.end_date.strftime('%x')})
 
     objects = ArtistManager()
 
