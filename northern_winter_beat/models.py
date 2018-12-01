@@ -1,5 +1,6 @@
 from typing import Type, Tuple
 
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Field
 from django.template.defaultfilters import slugify
@@ -52,6 +53,12 @@ class WinterbeatSettings(SingletonModel):
     show_nav_bar = models.BooleanField(
         ugettext_lazy("Show navigation bar"),
         help_text=ugettext_lazy("Show the bar of pages on top or not."),
+        default=False
+    )
+
+    show_timeline = models.BooleanField(
+        ugettext_lazy("Show timeline"),
+        help_text=ugettext_lazy("Show the page with the date each artist is going to play"),
         default=False
     )
 
@@ -177,6 +184,21 @@ class Artist(Orderable):
         default=now
     )
 
+    concert_date = models.DateField(
+        ugettext_lazy("concert date"),
+        help_text=ugettext_lazy('The day the artist is going to play'),
+        blank=True,
+        null=True,
+    )
+
+    def clean(self):
+        super().clean()
+        settings = WinterbeatSettings.get_solo()
+        if not settings.start_date <= self.concert_date <= settings.end_date:
+            raise ValidationError(ugettext(
+                "Concert date has to be while the festival is running (between %(start_date)s and %(end_date)s)"
+            ) % {'start_date': settings.start_date.strftime('%x'), 'end_date': settings.end_date.strftime('%x')})
+
     objects = ArtistManager()
 
     def save(self, **kwargs):
@@ -197,13 +219,11 @@ class Artist(Orderable):
     @property
     def body(self):
         out = mark_safe(self.description + (f"<br><br> {self.embedded_youtube}" if self.youtube_video_link else ""))
-        print(out)
         return out
 
     @property
     def embedded_youtube(self):
         link = self.youtube_video_link.replace("watch?v=", "embed/")
-        print(link)
         return f'<div class="embed-responsive embed-responsive-16by9"><iframe src="{link}" width="100%" ' \
                f'class="embed-responsive-item" allowfullscreen></iframe></div> '
 

@@ -2,6 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib.admin import AdminSite
+from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy
 from django_summernote.admin import SummernoteModelAdmin
 from orderable.admin import OrderableAdmin
@@ -34,6 +35,16 @@ class PageAdmin(SummernoteModelAdmin):
 
 @admin.register(Artist)
 class ArtistAdmin(OrderableAdmin, SummernoteModelAdmin):
+
+    def get_changeform_initial_data(self, request):
+        """
+        The default playday should be the first day of the festival.
+        This is so it's easier than to scroll all the way through and make sure it is the correct day
+        :param request:
+        :return:
+        """
+        return {'concert_date': WinterbeatSettings.get_solo().start_date}
+
     exclude = ["pk", "slug", "sort_order"]
     list_display = ["name", "release_date", "subtitle", 'sort_order_display']
     summernote_fields = ["description_da", "description_en"]
@@ -44,4 +55,3 @@ class PostAdmin(SummernoteModelAdmin):
     exclude = ["pk", "slug"]
     list_display = ["title", "created"]
     summernote_fields = ["body_da", "body_en"]
-

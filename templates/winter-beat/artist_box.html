@@ -1,0 +1,39 @@
+{% load color_helpers %}
+{% if artist.one_line %}
+    <div class="col-12">
+    <div class="row justify-content-center">
+{% endif %}
+
+<div class="
+{% if force_big %}
+col-12
+{% else %}
+
+                {% if artist.name_len > 20 %}
+                    col-md-6 col-lg-6
+                {% elif artist.name_len > 14 %}
+                    col-md-6 col-lg-4
+                {% else %}
+                    col-md-4 col-lg-3
+                {% endif %}
+                col-sm-6 col-12
+                {% endif %}
+">
+    <a
+            {% if artist.body %}
+                data-toggle="modal"  data-target="#exampleModal"
+                onclick="setModal({{ artist.pk }})"
+            {% endif %}
+    >
+        <div class="artist box shadow justify-center {{ artist.pk|artist_background_color }}">
+            {{ artist.name }}
+            {% if artist.subtitle %}
+                <p class="small no-margin">{{ artist.subtitle }}</p>
+            {% endif %}
+        </div>
+    </a>
+</div>
+
+{% if artist.one_line %}
+    </div></div>
+{% endif %}

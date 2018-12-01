@@ -29,6 +29,12 @@ def show_artist(request, artist_slug):
     })
 
 
+def timeline(request):
+    artists = Artist.objects.all().order_by("concert_date", "sort_order")
+
+    return render(request, "winter-beat/timeline.html", {"artists": artists})
+
+
 def view_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, "winter-beat/view_post.html", {"post": post})
