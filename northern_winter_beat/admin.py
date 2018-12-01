@@ -8,7 +8,7 @@ from django_summernote.admin import SummernoteModelAdmin
 from orderable.admin import OrderableAdmin
 from solo.admin import SingletonModelAdmin
 
-from northern_winter_beat.models import Page, Artist, Post, WinterbeatSettings
+from northern_winter_beat.models import Page, Artist, Post, WinterbeatSettings, Concert
 
 admin.site.register(WinterbeatSettings, SingletonModelAdmin)
 
@@ -33,8 +33,10 @@ class PageAdmin(SummernoteModelAdmin):
     summernote_fields = ["body_da", "body_en"]
 
 
-@admin.register(Artist)
-class ArtistAdmin(OrderableAdmin, SummernoteModelAdmin):
+@admin.register(Concert)
+class ConcertAdmin(admin.ModelAdmin):
+    exclude = ["pk"]
+    list_display = ["title", "date"]
 
     def get_changeform_initial_data(self, request):
         """
@@ -43,8 +45,11 @@ class ArtistAdmin(OrderableAdmin, SummernoteModelAdmin):
         :param request:
         :return:
         """
-        return {'concert_date': WinterbeatSettings.get_solo().start_date}
+        return {'date': WinterbeatSettings.get_solo().start_date}
 
+
+@admin.register(Artist)
+class ArtistAdmin(OrderableAdmin, SummernoteModelAdmin):
     exclude = ["pk", "slug", "sort_order"]
     list_display = ["name", "release_date", "subtitle", 'sort_order_display']
     summernote_fields = ["description_da", "description_en"]

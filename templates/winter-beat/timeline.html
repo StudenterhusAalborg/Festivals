@@ -6,7 +6,7 @@
 
     <div class="row justify-content-center">
 
-        {% regroup artists by concert_date as dates %}
+        {% regroup concerts by date as dates %}
         {% if dates %}
             {% for day in dates %}
                 {% if day.grouper %}
@@ -16,9 +16,11 @@
                                 {{ day.grouper|date:"l" }}
                             </p>
                         </div>
-                        {% for artist in day.list %}
+                        {% for concert in day.list %}
+                            {% with artist=concert.artist %}
                             {% with force_big=1 %}
                                 {% include 'winter-beat/artist_box.html' %}
+                            {% endwith %}
                             {% endwith %}
                         {% endfor %}
                     </div>
@@ -58,11 +60,11 @@
 {% block additional_javascript %}
     <script>
         const bands = {
-        {% for artist in artists %}
-            {% if artist.body %}
-                {{artist.pk}}: {
-                'name':`{{ artist.name }}`,
-                    'body':`{{ artist.body }}`
+        {% for concert in concerts %}
+            {% if concert.artist.body %}
+                {{concert.artist.pk}}: {
+                'name':`{{ concert.artist.name }}`,
+                    'body':`{{ concert.artist.body }}`
             },
             {% endif %}
         {% endfor %}

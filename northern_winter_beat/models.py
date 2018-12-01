@@ -184,13 +184,6 @@ class Artist(Orderable):
         default=now
     )
 
-    concert_date = models.DateField(
-        ugettext_lazy("concert date"),
-        help_text=ugettext_lazy('The day the artist is going to play'),
-        blank=True,
-        null=True,
-    )
-
     def clean(self):
         super().clean()
         settings = WinterbeatSettings.get_solo()
@@ -231,6 +224,34 @@ class Artist(Orderable):
         verbose_name = ugettext_lazy("artist")
         verbose_name_plural = ugettext_lazy("artists")
         ordering = ("sort_order",)
+
+
+class Concert(models.Model):
+    artist = models.ForeignKey(
+        Artist,
+        help_text=ugettext_lazy('The artist that is going to play the concert'),
+        on_delete=models.CASCADE)
+
+    sub_title = models.CharField(
+        max_length=128,
+        blank=True,
+        null=True,
+    )
+
+    date = models.DateField(
+        ugettext_lazy("date"),
+        help_text=ugettext_lazy('The day the artist is going to play'),
+        blank=True,
+        null=True,
+    )
+
+    @property
+    def title(self):
+        return self.artist.name + (f" {self.sub_title}" if self.sub_title else "")
+
+    class Meta:
+        verbose_name = ugettext_lazy("concert")
+        verbose_name_plural = ugettext_lazy("concerts")
 
 
 class Post(models.Model):

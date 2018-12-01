@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.utils.timezone import now
 from django.views.decorators.clickjacking import xframe_options_exempt
 
-from northern_winter_beat.models import Page, Artist, WinterbeatSettings, Post
+from northern_winter_beat.models import Page, Artist, WinterbeatSettings, Post, Concert
 
 
 def index(request):
@@ -30,9 +30,9 @@ def show_artist(request, artist_slug):
 
 
 def timeline(request):
-    artists = Artist.objects.all().order_by("concert_date", "sort_order")
+    concerts = Concert.objects.all().order_by("date", "artist__sort_order")
 
-    return render(request, "winter-beat/timeline.html", {"artists": artists})
+    return render(request, "winter-beat/timeline.html", {"concerts": concerts})
 
 
 def view_post(request, pk):
