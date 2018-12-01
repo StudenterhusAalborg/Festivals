@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='concert',
             name='sort_order',
-            field=models.IntegerField(blank=True, db_index=True, default=-1),
+            field=models.IntegerField(blank=True, db_index=True, default=1),
             preserve_default=False,
         ),
         migrations.RunPython(add_sort_order)
