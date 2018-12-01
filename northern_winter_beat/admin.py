@@ -34,9 +34,9 @@ class PageAdmin(SummernoteModelAdmin):
 
 
 @admin.register(Concert)
-class ConcertAdmin(OrderableAdmin):
-    exclude = ["pk", "sort_order"]
-    list_display = ["title", "date", "sort_order_display"]
+class ConcertAdmin(admin.ModelAdmin):
+    exclude = ["pk"]
+    list_display = ["title", "date", ]
 
     def get_changeform_initial_data(self, request):
         """
