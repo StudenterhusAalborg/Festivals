@@ -194,9 +194,9 @@ class Artist(Orderable):
     def clean(self):
         super().clean()
         settings = WinterbeatSettings.get_solo()
-        if settings.start_date <= self.concert_date <= settings.end_date:
+        if not settings.start_date <= self.concert_date <= settings.end_date:
             raise ValidationError(ugettext(
-                "Concert date has to be while the festival is running (between %{start_date} and %{end_date})"
+                "Concert date has to be while the festival is running (between %(start_date)s and %(end_date)s)"
             ) % {'start_date': settings.start_date.strftime('%x'), 'end_date': settings.end_date.strftime('%x')})
 
     objects = ArtistManager()

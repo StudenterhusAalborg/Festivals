@@ -6,7 +6,7 @@
 
     <div class="row justify-content-center">
 
-        {% regroup artists by date as dates %}
+        {% regroup artists by concert_date as dates %}
         {% if dates %}
             {% for day in dates %}
                 {% if day.grouper %}

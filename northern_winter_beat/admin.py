@@ -43,7 +43,7 @@ class ArtistAdmin(OrderableAdmin, SummernoteModelAdmin):
         :param request:
         :return:
         """
-        return {'date': WinterbeatSettings.get_solo().start_date}
+        return {'concert_date': WinterbeatSettings.get_solo().start_date}
 
     exclude = ["pk", "slug", "sort_order"]
     list_display = ["name", "release_date", "subtitle", 'sort_order_display']
