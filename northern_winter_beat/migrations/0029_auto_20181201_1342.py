@@ -16,15 +16,15 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterModelOptions(
-            name='concert',
-            options={'ordering': ('sort_order',), 'verbose_name': 'concert', 'verbose_name_plural': 'concerts'},
-        ),
-        migrations.AddField(
+                migrations.AddField(
             model_name='concert',
             name='sort_order',
             field=models.IntegerField(blank=True, db_index=True, default=1),
             preserve_default=False,
+        ),
+        migrations.AlterModelOptions(
+            name='concert',
+            options={'ordering': ('sort_order',), 'verbose_name': 'concert', 'verbose_name_plural': 'concerts'},
         ),
         migrations.RunPython(add_sort_order)
     ]
