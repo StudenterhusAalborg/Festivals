@@ -5,8 +5,9 @@
 {% block content %}
 
     <div class="row justify-content-center">
+
+        {% regroup artists by date as dates %}
         {% if dates %}
-            {% regroup artists by date as dates %}
             {% for day in dates %}
                 {% if day.grouper %}
                     <div class="col-4 col-md-4 col-sm-12 col-xs-12 justify-content-center">

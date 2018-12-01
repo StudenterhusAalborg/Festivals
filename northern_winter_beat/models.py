@@ -55,6 +55,12 @@ class WinterbeatSettings(SingletonModel):
         default=False
     )
 
+    show_timeline = models.BooleanField(
+        ugettext_lazy("Show timeline"),
+        help_text=ugettext_lazy("Show the page with the date each artist is going to play"),
+        default=False
+    )
+
     youtube_link = models.CharField(
         ugettext_lazy("Link to Youtube"),
         help_text=ugettext_lazy("If you have a link to a playlist on Youtube relevant to the festival"),
@@ -209,7 +215,6 @@ class Artist(Orderable):
     @property
     def embedded_youtube(self):
         link = self.youtube_video_link.replace("watch?v=", "embed/")
-        print(link)
         return f'<div class="embed-responsive embed-responsive-16by9"><iframe src="{link}" width="100%" ' \
                f'class="embed-responsive-item" allowfullscreen></iframe></div> '
 
