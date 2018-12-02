@@ -223,6 +223,9 @@ p {
 }
 .modal-dialog {
   max-width: 600px;
+  img {
+    width: 100%;
+  }
 }
 .big {
   font-family: 'League Gothic', cursive;
