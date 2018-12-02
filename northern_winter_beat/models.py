@@ -184,14 +184,6 @@ class Artist(Orderable):
         default=now
     )
 
-    def clean(self):
-        super().clean()
-        settings = WinterbeatSettings.get_solo()
-        if not settings.start_date <= self.concert_date <= settings.end_date:
-            raise ValidationError(ugettext(
-                "Concert date has to be while the festival is running (between %(start_date)s and %(end_date)s)"
-            ) % {'start_date': settings.start_date.strftime('%x'), 'end_date': settings.end_date.strftime('%x')})
-
     objects = ArtistManager()
 
     def save(self, **kwargs):
@@ -244,6 +236,14 @@ class Concert(models.Model):
         blank=True,
         null=True,
     )
+
+    def clean(self):
+        super().clean()
+        settings = WinterbeatSettings.get_solo()
+        if not settings.start_date <= self.date <= settings.end_date:
+            raise ValidationError(ugettext(
+                "Concert date has to be while the festival is running (between %(start_date)s and %(end_date)s)"
+            ) % {'start_date': settings.start_date.strftime('%x'), 'end_date': settings.end_date.strftime('%x')})
 
     def __str__(self):
         return f"{self.title} - {self.date:%c}"
