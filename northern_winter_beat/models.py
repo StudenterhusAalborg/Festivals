@@ -218,7 +218,7 @@ class Artist(Orderable):
         ordering = ("sort_order",)
 
 
-class Concert(models.Model):
+class Concert(Orderable):
     artist = models.ForeignKey(
         Artist,
         help_text=ugettext_lazy('The artist that is going to play the concert'),

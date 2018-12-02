@@ -1,0 +1,9 @@
+<div class="card">
+    <div class="header box blue-dark">{{ post.title|safe }}</div>
+    <div class="body">
+        <p class="post-date">
+            {{ post.created|date:"D j. M Y" }}
+        </p>
+        {{ post.body|safe }}
+    </div>
+</div>

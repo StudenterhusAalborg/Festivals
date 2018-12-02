@@ -1,0 +1,23 @@
+@import "consts";
+
+.navbar {
+  justify-content: center;
+  //*
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  .navbar-item.wide {
+
+  }
+  .navbar-item {
+
+    @extend %big-font;
+    @media(min-width:500px) {
+      margin: 10px;
+    }
+
+    @media(max-width:500px) {
+      margin: 5px;
+    }
+  }
+}

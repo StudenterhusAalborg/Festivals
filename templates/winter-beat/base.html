@@ -24,7 +24,7 @@
     <link href="{% sass_src 'css/app.scss' %}" rel="stylesheet">
 </head>
 <body>
-<header class="container mx-auto">
+<header class="mx-auto">
     {%  if not settings.show_nav_bar %}
         {% include 'partials/static_nav_bar_elements.html' %}
     {% endif %}
@@ -36,13 +36,13 @@
         </div>
 
         {%  if settings.show_nav_bar %}
-            <div class="navbar-collapse w-full text-center">
+            <div class="navbar">
                 {% if posts %}
                     <a class="navbar-item" href="{% url "winterbeat:list_posts" %}">{% trans 'News' %}</a>
                 {% endif %}
-                <a class="navbar-item" href="{% url "winterbeat:timeline" %}">{% trans 'Lineup' %}</a>
-            {% if settings.show_timeline %}
-                <a class="navbar-item" href="{% url "winterbeat:timeline" %}">{% trans 'Timeline' %}</a>
+                <a class="navbar-item" href="{% url "winterbeat:home" %}">{% trans 'Lineup' %}</a>
+                {% if settings.show_timeline %}
+                    <a class="navbar-item" href="{% url "winterbeat:timeline" %}">{% trans 'Timeline' %}</a>
                 {% endif %}
                 {% if settings.ticket_link %}
                     <a class="navbar-item" href="{{ settings.ticket_link }}">{% trans 'Tickets' %}</a>
@@ -53,30 +53,18 @@
                 {% include 'partials/static_nav_bar_elements.html' %}
             </div>
 
-            <div class="row justify-content-center big" style="margin-bottom: -80px;">
-                <p class="text-center">
-                        {% include 'partials/time-from-to.html' %}
-                </p>
+            <div class="statement">
+                {% include 'partials/time-from-to.html' %}
             </div>
         {% endif %}
     </div>
 </header>
-<br>
 <main>
+    {% block content %}
 
-    <div class="container">
-        <div class="items-center">
-            {% block content %}
-
-            {% endblock %}
-        </div>
-    </div>
+    {% endblock %}
 </main>
-<footer class="footer container text-center">
-    <div class="row items-center">
-        {% include 'partials/festival-footer.html' %}
-    </div>
-</footer>
+{% include 'partials/festival-footer.html' %}
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

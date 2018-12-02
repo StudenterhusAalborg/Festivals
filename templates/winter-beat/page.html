@@ -1,6 +1,5 @@
-{% extends 'partials/base-northern-winter-beat.html' %}
+{% extends 'winter-beat/base.html' %}
 
 {% block content %}
-<h3>{{ page.title }}</h3>
-    {{ page.body|safe|linebreaks }}
+{% include 'winter-beat/partials/post.html' %}
 {% endblock %}

@@ -1,21 +1,19 @@
-{% extends 'partials/base-northern-winter-beat.html' %}
+{% extends 'winter-beat/base.html' %}
 {% load color_helpers %}
 {% load i18n %}
 {% load solo_tags %}
 {% block content %}
     {% get_solo 'northern_winter_beat.winterbeatsettings' as settings %}
-    <div class="row justify-content-center big">
-        <p class="text-center">
+    <div class="statement">
             {{ settings.top_text }}
-        </p>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center artists">
 
         {% for artist in artists %}
             {% include 'winter-beat/artist_box.html' %}
         {% endfor %}
     </div>
-    <div class="row justify-content-center big">
+    <div class="statement">
         <p>
             {{ settings.bottom_text }}
         </p>

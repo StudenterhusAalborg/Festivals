@@ -1,0 +1,14 @@
+@import "consts";
+footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  a {
+    grid-column: span 1;
+    width: 50%;
+    @media (max-width: 500px) {
+      width: 90%;
+
+    }
+  }
+}

@@ -41,4 +41,7 @@ def view_post(request, pk):
 
 
 def list_posts(request):
-    return render(request, "winter-beat/list_posts.html", {})
+
+    posts = Post.objects.all() if request.user.is_authenticated and request.user.is_superuser \
+        else Post.objects.filter(created__lte=now())
+    return render(request, "winter-beat/list_posts.html", { "posts": posts})

@@ -1,0 +1,38 @@
+$background: #ead4c7;
+$modal-background: #ecded6;
+$background-2: #b8a998;
+$blue: #82abc9;
+$blue-dark: #688fa4;
+$font-black: #333;
+
+%big-font {
+
+  color: $font-black;
+  font-family: 'League Gothic';
+  @media(min-width:500px) {
+    font-size: 1.5em;
+  }
+
+  @media(max-width:500px) {
+    font-size: 1.2em;
+  }
+  text-decoration: none;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0px rgba(255,255,255,.5);
+}
+
+%shadow {
+  &:before {
+    background: rgba(0, 0, 0, .1);
+    content: "";
+    position: absolute;
+    top: -2%;
+    left: -2%;
+    width: 104%;
+    height: 104%;
+    z-index: -1;
+    transition: all 100ms ease-in-out;
+    transform: rotate(3deg) translateZ(-1em);
+  }
+}
+
