@@ -221,8 +221,17 @@ class Artist(Orderable):
 class Concert(Orderable):
     artist = models.ForeignKey(
         Artist,
+        verbose_name=ugettext_lazy('artist'),
         help_text=ugettext_lazy('The artist that is going to play the concert'),
         on_delete=models.CASCADE)
+
+    title = models.CharField(
+        verbose_name=ugettext_lazy('title'),
+        max_length=128,
+        help_text=ugettext_lazy('If you want the title to be something else than the artist name'),
+        blank=True,
+        null=True
+    )
 
     sub_title = models.CharField(
         max_length=128,
@@ -246,16 +255,13 @@ class Concert(Orderable):
             ) % {'start_date': settings.start_date.strftime('%x'), 'end_date': settings.end_date.strftime('%x')})
 
     def __str__(self):
-        return f"{self.title} - {self.date:%c}"
+        title = self.artist.name + (f" {self.sub_title}" if self.sub_title else "")
+        return f"{title} - {self.date:%c}"
 
-    @property
-    def title(self):
-        return self.artist.name + (f" {self.sub_title}" if self.sub_title else "")
 
-    class Meta:
+    class Meta(Orderable.Meta):
         verbose_name = ugettext_lazy("concert")
         verbose_name_plural = ugettext_lazy("concerts")
-        #ordering = ("sort_order",)
 
 
 class Post(models.Model):

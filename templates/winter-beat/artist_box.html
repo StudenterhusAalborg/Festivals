@@ -12,7 +12,12 @@
 >
     <div class="artist box shadow justify-center {{ artist.pk|artist_background_color }}">
         {% if concert %}
-            {{ concert.artist.name }}
+            {%  if concert.title %}
+                {{ concert.title }}
+            {% else %}
+             {{ concert.artist.name }}
+            {% endif %}
+
             {% if concert.sub_title %}
                 <p class="small no-margin">
                     {{ concert.sub_title }}
