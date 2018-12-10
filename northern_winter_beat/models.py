@@ -255,9 +255,8 @@ class Concert(Orderable):
             ) % {'start_date': settings.start_date.strftime('%x'), 'end_date': settings.end_date.strftime('%x')})
 
     def __str__(self):
-        title = self.artist.name + (f" {self.sub_title}" if self.sub_title else "")
+        title = (self.title or self.artist.name) + (f" {self.sub_title}" if self.sub_title else "")
         return f"{title} - {self.date:%c}"
-
 
     class Meta(Orderable.Meta):
         verbose_name = ugettext_lazy("concert")
