@@ -15,8 +15,6 @@
                                 {{ day.grouper|date:"l" }}
                         </div>
                         <div class="artists">
-
-
                             {% for concert in day.list %}
                                 {% with artist=concert.artist %}
                                     {% with force_big=1 %}

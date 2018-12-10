@@ -30,7 +30,7 @@ def show_artist(request, artist_slug):
 
 
 def timeline(request):
-    concerts = Concert.objects.all().order_by("date", "artist__sort_order")
+    concerts = Concert.objects.all().order_by("date", "sort_order")
 
     return render(request, "winter-beat/timeline.html", {"concerts": concerts})
 
