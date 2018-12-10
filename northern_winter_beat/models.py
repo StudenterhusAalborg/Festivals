@@ -256,7 +256,7 @@ class Concert(Orderable):
 
     def __str__(self):
         title = (self.title or self.artist.name) + (f" {self.sub_title}" if self.sub_title else "")
-        return f"{title} - {self.date:%c}"
+        return f"{title} - {self.date:%a}"
 
     class Meta(Orderable.Meta):
         verbose_name = ugettext_lazy("concert")
