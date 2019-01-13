@@ -1,0 +1,91 @@
+{% extends 'winter-beat/base.html' %}
+{% load color_helpers %}
+{% load i18n %}
+{% load solo_tags %}
+{% block content %}
+
+    <div class="days">
+
+        {% regroup concerts by date as dates %}
+        {% if dates %}
+            {% for day in dates %}
+                {% if day.grouper %}
+                    <div class="date-row">
+                        <div>
+                            {{ day.grouper|date:"l" }}
+                        </div>
+                        {% for venue in venues.orderby:pk %}
+                            <div class="venue {{ venue.color }}">
+                                {{ venue.name }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="event-row">
+                        {% for timestamp in day.timestamps %}
+                            <div class="timestamp">
+                                {{ something }}
+                            </div>
+                        {% endfor %}
+                        {% for concert in day.list %}
+                            {% with artist=concert.artist %}
+                                {% with force_big=1 %}
+                                    {% include 'winter-beat/artist_box.html' %}
+                                {% endwith %}
+                            {% endwith %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <b>Coming soon</b>
+        {% endif %}
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-artist">
+                <div class="modal-artist-header">
+                    <div class="row no-margin">
+                        <div class="col-11">
+                            <div id="exampleModalLabel">title</div>
+                        </div>
+                        <div class="col-1">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block additional_javascript %}
+    <script>
+        const bands = {
+        {% for concert in concerts %}
+            {% if concert.artist.body %}
+                {{concert.artist.pk}}: {
+                'name':`{{ concert.artist.name }}`,
+                    'body':`{{ concert.artist.body }}`
+            },
+            {% endif %}
+        {% endfor %}
+        }
+
+        function setModal(pk) {
+            $('#exampleModalLabel').text(bands[pk].name);
+            $('#modalBody').html(bands[pk].body);
+        }
+        $('#exampleModal').on('shown.bs.modal', function () {
+            $('#exampleInput').trigger('focus')
+        })
+    </script>
+{% endblock %}

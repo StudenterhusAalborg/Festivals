@@ -1,0 +1,36 @@
+{% extends 'winter-beat/base.html' %}
+{% load color_helpers %}
+{% load i18n %}
+{% load solo_tags %}
+{% load static %}
+{% block content %}
+
+    <a href="{% static "images/timeschedule.jpg" %}">
+        <img src="{% static "images/timeschedule.jpg"%}" width="100%"/>
+    </a>
+
+{% endblock %}
+
+
+{% block additional_javascript %}
+    <script>
+        const bands = {
+        {% for concert in concerts %}
+            {% if concert.artist.body %}
+                {{concert.artist.pk}}: {
+                'name':`{{ concert.artist.name }}`,
+                    'body':`{{ concert.artist.body }}`
+            },
+            {% endif %}
+        {% endfor %}
+        }
+
+        function setModal(pk) {
+            $('#exampleModalLabel').text(bands[pk].name);
+            $('#modalBody').html(bands[pk].body);
+        }
+        $('#exampleModal').on('shown.bs.modal', function () {
+            $('#exampleInput').trigger('focus')
+        })
+    </script>
+{% endblock %}
