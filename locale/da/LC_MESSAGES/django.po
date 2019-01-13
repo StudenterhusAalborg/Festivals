@@ -70,7 +70,7 @@ msgstr ""
 "Skal navigations baren (af under sider) vises eller ej (den der er i toppen)"
 
 #: northern_winter_beat/models.py:60
-msgid "Show timeline"
+msgid "Show schedule"
 msgstr "Vis tidsplan"
 
 #: northern_winter_beat/models.py:61
@@ -227,7 +227,7 @@ msgid "Lineup"
 msgstr "Lineup"
 
 #: templates/partials/base-northern-winter-beat.html:45
-msgid "Timeline"
+msgid "Schedule"
 msgstr "Tidsplan"
 
 #: templates/partials/base-northern-winter-beat.html:48

@@ -56,8 +56,8 @@ class WinterbeatSettings(SingletonModel):
         default=False
     )
 
-    show_timeline = models.BooleanField(
-        ugettext_lazy("Show timeline"),
+    show_schedule = models.BooleanField(
+        ugettext_lazy("Show schedule"),
         help_text=ugettext_lazy("Show the page with the date each artist is going to play"),
         default=False
     )

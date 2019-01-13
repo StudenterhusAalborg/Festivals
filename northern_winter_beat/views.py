@@ -29,10 +29,10 @@ def show_artist(request, artist_slug):
     })
 
 
-def timeline(request):
-    return render(request, "winter-beat/static_timeline.html")
+def schedule(request):
+    return render(request, "winter-beat/static_schedule.html")
     #concerts = Concert.objects.all().order_by("date", "sort_order")
-    #return render(request, "winter-beat/timeline.html", {"concerts": concerts})
+    #return render(request, "winter-beat/schedule.html", {"concerts": concerts})
 
 
 def view_post(request, pk):
