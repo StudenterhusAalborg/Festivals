@@ -111,6 +111,7 @@ class Festival(models.Model):
 
 
 class Page(models.Model):
+    festival = models.ForeignKey(Festival, on_delete=models.CASCADE)
     title_da, title_en = create_field_for_both_languages(
         models.CharField,
         ugettext_lazy("title"),
@@ -153,6 +154,7 @@ class ArtistManager(OrderableManager):
 
 
 class Artist(Orderable):
+    festival = models.ForeignKey(Festival, on_delete=models.CASCADE)
     name = models.CharField(
         ugettext_lazy("name"),
         max_length=128
@@ -219,6 +221,7 @@ class Artist(Orderable):
 
 
 class Concert(Orderable):
+    festival = models.ForeignKey(Festival, on_delete=models.CASCADE)
     artist = models.ForeignKey(
         Artist,
         verbose_name=ugettext_lazy('artist'),
@@ -248,11 +251,16 @@ class Concert(Orderable):
 
     def clean(self):
         super().clean()
-        settings = Festival.get_solo()
-        if not settings.start_date <= self.date <= settings.end_date:
-            raise ValidationError(ugettext(
-                "Concert date has to be while the festival is running (between %(start_date)s and %(end_date)s)"
-            ) % {'start_date': settings.start_date.strftime('%x'), 'end_date': settings.end_date.strftime('%x')})
+        if not self.festival.start_date <= self.date <= self.festival.end_date:
+            raise ValidationError(
+                ugettext(
+                    "Concert date has to be while the festival is "
+                    "running (between %(start_date)s and %(end_date)s)"
+                ) % {
+                    'start_date': self.festival.start_date.strftime('%x'),
+                    'end_date': self.festival.end_date.strftime('%x')
+                }
+            )
 
     def __str__(self):
         title = (self.title or self.artist.name) + (f" {self.sub_title}" if self.sub_title else "")
@@ -264,6 +272,7 @@ class Concert(Orderable):
 
 
 class Post(models.Model):
+    festival = models.ForeignKey(Festival, on_delete=models.CASCADE)
     title_da, title_en = create_field_for_both_languages(
         models.CharField,
         ugettext_lazy("title"),
