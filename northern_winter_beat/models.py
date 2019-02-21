@@ -30,7 +30,7 @@ def create_field_for_both_languages(field_type: Type[Field], pretty_name: str, *
     return ret
 
 
-class WinterbeatSettings(SingletonModel):
+class Festival(models.Model):
     top_text_da, top_text_en = create_field_for_both_languages(
         models.TextField,
         ugettext_lazy("Top text"),
@@ -248,7 +248,7 @@ class Concert(Orderable):
 
     def clean(self):
         super().clean()
-        settings = WinterbeatSettings.get_solo()
+        settings = Festival.get_solo()
         if not settings.start_date <= self.date <= settings.end_date:
             raise ValidationError(ugettext(
                 "Concert date has to be while the festival is running (between %(start_date)s and %(end_date)s)"

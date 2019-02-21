@@ -1,16 +1,11 @@
 from django.contrib import admin
-
 # Register your models here.
 from django.contrib.admin import AdminSite
-from django.forms import ModelForm
 from django.utils.translation import ugettext_lazy
 from django_summernote.admin import SummernoteModelAdmin
 from orderable.admin import OrderableAdmin
-from solo.admin import SingletonModelAdmin
 
-from northern_winter_beat.models import Page, Artist, Post, WinterbeatSettings, Concert
-
-admin.site.register(WinterbeatSettings, SingletonModelAdmin)
+from northern_winter_beat.models import Page, Artist, Post, Festival, Concert
 
 
 class MyAdminSite(AdminSite):
@@ -25,6 +20,12 @@ class MyAdminSite(AdminSite):
 
 
 admin_site = MyAdminSite()
+
+
+@admin.register(Festival)
+class FestivalAdmin(admin.ModelAdmin):
+    exclude = ["pk"]
+    list_display = ["__str__"]
 
 
 @admin.register(Page)
@@ -45,7 +46,7 @@ class ConcertAdmin(OrderableAdmin):
         :param request:
         :return:
         """
-        return {'date': WinterbeatSettings.get_solo().start_date}
+        return {'date': Festival.get_solo().start_date}
 
 
 @admin.register(Artist)
