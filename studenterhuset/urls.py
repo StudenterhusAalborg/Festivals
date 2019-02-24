@@ -21,13 +21,14 @@ from django.conf.urls.static import static
 
 from django.utils.translation import ugettext_lazy
 
+import festivals.urls
 import northern_winter_beat.urls
 
 urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
-    # TODO add more festivals here.
-    path('', include(northern_winter_beat.urls))
+    path('old/', include(northern_winter_beat.urls)),
+    path('', include(festivals.urls)),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -4,14 +4,13 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Field
 from django.template.defaultfilters import slugify
-# Create your models here.
 from django.utils.safestring import mark_safe
 from django.utils.text import format_lazy
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy, get_language, ugettext
+
 from orderable.managers import OrderableManager
 from orderable.models import Orderable
-from solo.models import SingletonModel
 
 
 def create_field_for_both_languages(field_type: Type[Field], pretty_name: str, **kwargs) -> Tuple[Field, Field]:
@@ -31,17 +30,25 @@ def create_field_for_both_languages(field_type: Type[Field], pretty_name: str, *
 
 
 class Festival(models.Model):
+    name = models.CharField(max_length=128)
+    domain_name = models.CharField(max_length=64)
+    theme = models.CharField(
+        max_length=128,
+        help_text="just dont touch if Casper hasn't told you to."
+    )
     top_text_da, top_text_en = create_field_for_both_languages(
         models.TextField,
         ugettext_lazy("Top text"),
         help_text=ugettext_lazy("the paragraph above the list of bands. Is hidden if empty"),
-        default=""
+        default="",
+        blank=True
     )
     bottom_text_da, bottom_text_en = create_field_for_both_languages(
         models.TextField,
         ugettext_lazy("Bottom text"),
         help_text=ugettext_lazy("The paragraph below the list of bands. It is hidden if empty"),
-        default=""
+        default="",
+        blank=True,
     )
 
     description = models.TextField(
@@ -78,6 +85,21 @@ class Festival(models.Model):
         blank=True,
     )
 
+    facebook_link = models.CharField(
+        ugettext_lazy("Link to Facebook"),
+        help_text=ugettext_lazy("If you have a link to a facebook page"),
+        max_length=255,
+        null=True,
+        blank=True
+    )
+
+    instagram_link = models.CharField(
+        ugettext_lazy("Link to Instagram"),
+        help_text=ugettext_lazy("If you have a link to a instagram page"),
+        max_length=255,
+        null=True,
+        blank=True
+    )
     ticket_link = models.CharField(
         ugettext_lazy("Link to tickets"),
         help_text=ugettext_lazy("This link will show up as the tickets sales"),
@@ -97,7 +119,7 @@ class Festival(models.Model):
     )
 
     def __str__(self):
-        return ugettext("Winterbeat Settings")
+        return self.name
 
     @property
     def bottom_text(self):
@@ -107,10 +129,12 @@ class Festival(models.Model):
         return mark_safe(self.top_text_da if get_language() == "da" else self.top_text_en)
 
     class Meta:
-        verbose_name = ugettext_lazy("Winterbeat Settings")
+        verbose_name = ugettext_lazy("Festival")
+        verbose_name_plural = ugettext_lazy("Festivals")
 
 
 class Page(models.Model):
+    festival = models.ForeignKey(Festival, on_delete=models.CASCADE)
     title_da, title_en = create_field_for_both_languages(
         models.CharField,
         ugettext_lazy("title"),
@@ -153,6 +177,7 @@ class ArtistManager(OrderableManager):
 
 
 class Artist(Orderable):
+    festival = models.ForeignKey(Festival, on_delete=models.CASCADE)
     name = models.CharField(
         ugettext_lazy("name"),
         max_length=128
@@ -219,6 +244,7 @@ class Artist(Orderable):
 
 
 class Concert(Orderable):
+    festival = models.ForeignKey(Festival, on_delete=models.CASCADE)
     artist = models.ForeignKey(
         Artist,
         verbose_name=ugettext_lazy('artist'),
@@ -269,6 +295,7 @@ class Concert(Orderable):
 
 
 class Post(models.Model):
+    festival = models.ForeignKey(Festival, on_delete=models.CASCADE)
     title_da, title_en = create_field_for_both_languages(
         models.CharField,
         ugettext_lazy("title"),
@@ -294,3 +321,4 @@ class Post(models.Model):
         verbose_name = ugettext_lazy("post")
         verbose_name_plural = ugettext_lazy("posts")
         ordering = ('-created',)
+

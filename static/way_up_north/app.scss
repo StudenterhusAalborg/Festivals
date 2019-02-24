@@ -1,0 +1,153 @@
+@import "../css/modal";
+
+$white: #ffffff;
+$grey-dark: #202020;
+$blue-dark:  #21379e;// #25316a;
+$phone-size: 600px;
+
+body {
+  background: $blue-dark;
+  color: $white;
+  font-size: 1.5rem;
+  max-width: 1000px;
+  text-transform: uppercase;
+  z-index: 0;
+  margin: 10vw 25vw auto;
+
+  @media(max-width:1000px) {
+    font-size: 1.25rem;
+    max-width: 500px;
+    margin: 25vw auto auto;
+  }
+  @media(max-width:$phone-size) {
+    margin-top: 40vw;
+    max-width: 80vw;
+  }
+}
+.footer {
+  position: absolute;
+  bottom: 1vh;
+}
+
+.artists {
+  text-align: justify;
+
+  font-size: 1.8rem;
+
+  @media(max-width:1000px) {
+    font-size: 1.3rem;
+  }
+
+  @media(max-width:$phone-size) {
+    text-align: right;
+
+  }
+  .sep:not(:last-child)::before {
+    content: '•';
+
+  }
+  .artist {
+    white-space: nowrap;
+
+    &.clickable:hover {
+      color: $grey-dark !important;
+      background-color: $white;
+      cursor: pointer;
+    }
+
+    &:after {
+      @media(max-width:$phone-size) {
+        content: "\A";
+        white-space: pre;
+      }
+    }
+
+
+  }
+}
+
+.navbar {
+  justify-content: left;
+  padding: 0;
+  .navbar-item {
+    color: $white;
+
+    &:not(:last-child) {
+    margin-right: 10px
+
+    }
+
+  }
+
+}
+
+.statement .navbar {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.logo {
+  position: absolute;
+  width: 20vw;
+  top: 2vh;
+  left: 2vh;
+  z-index: -1;
+
+  @media(max-width:$phone-size) {
+    width: 40vw;
+  }
+
+  img {
+    width: 100%;
+  }
+
+}
+.crystals {
+  overflow: hidden;
+  .crystal {
+
+    position: fixed;
+    z-index: 2;
+
+    img {
+      width: 100%;
+    }
+    &.top {
+      top: 0;
+      right: 0;
+      width: 10vw;
+
+      @media(max-width:$phone-size) {
+        width: 15vw;
+      }
+    }
+    &.bottom {
+      bottom: 0;
+      left: 0;
+      width: 22vw;
+
+      @media(max-width:$phone-size) {
+        width: 40vw;
+      }
+    }
+  }
+}
+
+
+
+.float-box {
+  overflow-y: auto;
+  background: $grey-dark;
+  z-index: -3;
+  position: absolute;
+  top: 10vh;
+  left: 10vw;
+  width: 40vw;
+  height: 80vh;
+
+  @media(max-width:$phone-size) {
+    width: 75vw;
+
+  }
+}

@@ -74,9 +74,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-
-
     'northern_winter_beat.apps.NorthernWinterBeatConfig',
+    'festivals.apps.FestivalsConfig',
 
     'storages',
     'django_summernote',
@@ -96,6 +95,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'festivals.middleware.set_festival_middleware'
 ]
 
 ROOT_URLCONF = 'studenterhuset.urls'

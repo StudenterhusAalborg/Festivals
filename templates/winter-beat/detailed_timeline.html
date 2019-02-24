@@ -14,7 +14,7 @@
                         <div>
                             {{ day.grouper|date:"l" }}
                         </div>
-                        {% for venue in venues.orderby:pk %}
+                        {% for venue in venues.orderby|pk %}
                             <div class="venue {{ venue.color }}">
                                 {{ venue.name }}
                             </div>

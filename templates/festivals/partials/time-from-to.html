@@ -1,0 +1,12 @@
+
+{% load i18n %}
+{% load l10n %}
+    {% if request.festival.start_date.year == request.festival.end_date.year %}
+        {% if request.festival.start_date.month == request.festival.end_date.month %}
+            {{ request.festival.start_date|date:"d" }} <i style="font-size: 85%" class="fas fa-arrow-right"></i> {{ request.festival.end_date|date:"d E Y"}}
+        {% else %}
+            {{ request.festival.start_date|date:"d E"}}  <i style="font-size: 85%" class="fas fa-arrow-right"></i> {{ request.festival.end_date|date:"d E Y" }}
+        {% endif %}
+    {% else %}
+        {{ request.festival.start_date }} <i style="font-size: 85%" class="fas fa-arrow-right"></i> {{ request.festival.end_date }}
+    {% endif %}

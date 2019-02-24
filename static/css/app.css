@@ -250,6 +250,18 @@
     .days {
       grid-template-columns: 1fr; } }
 
+.date-row {
+  grid-row: 1 / 2;
+  display: grid;
+  grid-template-columns: 1fr; }
+
+.event-row {
+  grid-row: 2/3;
+  display: grid; }
+  .event-row .timestamp {
+    background-color: #b8a998;
+    grid-row: 1 / 2; }
+
 .navbar .navbar-item, .statement, .title {
   color: #333;
   font-family: 'League Gothic';
