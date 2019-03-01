@@ -1,21 +1,18 @@
-@import "../css/modal";
+@import "modal";
+@import "consts";
 
-$white: #ffffff;
-$grey-dark: #202020;
-$blue-dark:  #21379e;// #25316a;
-$phone-size: 600px;
 
 body {
   background: $blue-dark;
   color: $white;
-  font-size: 1.5rem;
+  font-size: 2rem;
   max-width: 1000px;
   text-transform: uppercase;
   z-index: 0;
-  margin: 10vw 25vw auto;
-
+  margin: 3vw 25vw auto;
+  font-family: 'Barlow Condensed', sans-serif;
   @media(max-width:1000px) {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     max-width: 500px;
     margin: 25vw auto auto;
   }
@@ -32,10 +29,10 @@ body {
 .artists {
   text-align: justify;
 
-  font-size: 1.8rem;
+  font-size: 3rem;
 
   @media(max-width:1000px) {
-    font-size: 1.3rem;
+    font-size: 2rem;
   }
 
   @media(max-width:$phone-size) {
@@ -81,9 +78,9 @@ body {
 
 }
 
-.statement .navbar {
-  margin-top: 40px;
-  margin-bottom: 40px;
+.statement, .navbar {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   text-align: left;
 }
 
@@ -116,10 +113,10 @@ body {
     &.top {
       top: 0;
       right: 0;
-      width: 10vw;
+      width: 20vw;
 
       @media(max-width:$phone-size) {
-        width: 15vw;
+        width: 40vw;
       }
     }
     &.bottom {

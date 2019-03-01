@@ -3,19 +3,18 @@
 {% load static %}
 {% load solo_tags %}
 
-{% get_solo 'northern_winter_beat.winterbeatsettings' as settings %}
 <a class="navbar-item" href="https://www.facebook.com/northernwinterbeat" target="_blank">
     <i class="fab fa-facebook-square"></i>
 </a>
 
-{% if settings.youtube_link %}
-    <a class="navbar-item" href="{{ settings.youtube_link }}" target="_blank">
+{% if request.festival.youtube_link %}
+    <a class="navbar-item" href="{{ request.festival.youtube_link }}" target="_blank">
         <i class="fab fa-youtube"></i>
     </a>
 {% endif %}
 
-{% if settings.spotify_link %}
-    <a class="navbar-item" href="{{ settings.spotify_link }}" target="_blank">
+{% if request.festival.spotify_link %}
+    <a class="navbar-item" href="{{ request.festival.spotify_link }}" target="_blank">
         <i class="fab fa-spotify"></i>
     </a>
 {% endif %}

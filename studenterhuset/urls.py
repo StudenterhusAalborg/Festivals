@@ -33,10 +33,10 @@ urlpatterns = i18n_patterns(
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Text to put at the end of each page's <title>.
-admin.site.site_title = ugettext_lazy('Studenthouse festivals')
+admin.site.site_title = ugettext_lazy('Studenthouse Festival')
 
 # Text to put in each page's <h1> (and above login form).
-admin.site.site_header = ugettext_lazy('Studenthouse festivals administration')
+admin.site.site_header = ugettext_lazy('Studenthouse Festival Administration')
 
 # Text to put at the top of the admin index page.
-admin.site.index_title = ugettext_lazy('Studenthouse festivals administration')
+admin.site.index_title = ugettext_lazy('Studenthouse Festival Administration')

@@ -4,7 +4,6 @@
 {% load sass_tags %}
 {% load color_helpers %}
 {% load solo_tags %}
-{% get_solo 'northern_winter_beat.winterbeatsettings' as settings %}
 
 <!DOCTYPE HTML>
 <html lang="da">
@@ -14,18 +13,18 @@
     {% include 'partials/meta.html' %}
     <title>
         {% block title %}
-            Northern Winter Beat
+            {{ request.festival.name }}
         {% endblock %}
     </title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="{% sass_src 'css/app.scss' %}" rel="stylesheet">
+    <link href="{% sass_src 'winter_beat/app.scss' %}" rel="stylesheet">
 </head>
 <body>
 <header class="mx-auto">
-    {%  if not settings.show_nav_bar %}
+    {%  if not request.festival.show_nav_bar %}
         {% include 'partials/static_nav_bar_elements.html' %}
     {% endif %}
 
@@ -35,17 +34,17 @@
 
         </div>
 
-        {%  if settings.show_nav_bar %}
+        {%  if request.festival.show_nav_bar %}
             <div class="navbar">
                 {% if posts %}
                     <a class="navbar-item" href="{% url "winterbeat:list_posts" %}">{% trans 'News' %}</a>
                 {% endif %}
                 <a class="navbar-item" href="{% url "winterbeat:home" %}">{% trans 'Lineup' %}</a>
-                {% if settings.show_schedule %}
+                {% if request.festival.show_schedule %}
                     <a class="navbar-item" href="{% url "winterbeat:schedule" %}">{% trans 'Schedule' %}</a>
                 {% endif %}
-                {% if settings.ticket_link %}
-                    <a class="navbar-item" href="{{ settings.ticket_link }}">{% trans 'Tickets' %}</a>
+                {% if request.festival.ticket_link %}
+                    <a class="navbar-item" href="{{ request.festival.ticket_link }}">{% trans 'Tickets' %}</a>
                 {% endif %}
                 {% for page in pages %}
                     <a class="navbar-item" href="{% url "winterbeat:page" page.slug %}">{{ page.title }}</a>

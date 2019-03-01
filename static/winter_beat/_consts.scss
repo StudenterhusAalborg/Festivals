@@ -8,7 +8,7 @@ $font-black: #333;
 %big-font {
 
   color: $font-black;
-  font-family: 'League Gothic';
+  font-family: 'League Gothic', serif;
   @media(min-width:500px) {
     font-size: 1.5em;
   }

@@ -3,6 +3,11 @@
 {% load static %}
 {% load solo_tags %}
 
+{% if request.festival.ticket_link %}
+    <a class="navbar-item" href="{{ request.festival.ticket_link }}" target="_blank">
+        <i class="fas fa-ticket-alt"></i>
+    </a>
+{% endif %}
 {% if request.festival.facebook_link %}
     <a class="navbar-item" href="{{ request.festival.facebook_link }}" target="_blank">
         <i class="fab fa-facebook-square"></i>
@@ -14,7 +19,7 @@
     </a>
 {% endif %}
 
-{% if settings.spotify_link %}
+{% if request.festival.spotify_link %}
     <a class="navbar-item" href="{{ request.festival.spotify_link }}" target="_blank">
         <i class="fab fa-spotify"></i>
     </a>

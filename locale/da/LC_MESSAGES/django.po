@@ -17,12 +17,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: northern_winter_beat/admin.py:18 studenterhuset/urls.py:35
-msgid "Studenthouse festivals"
-msgstr "Studenterhuset's festivaler"
+msgid "Studenthouse Festival"
+msgstr "Studenterhuset's Festivaler"
 
 #: northern_winter_beat/admin.py:21 northern_winter_beat/admin.py:24
 #: studenterhuset/urls.py:38 studenterhuset/urls.py:41
-msgid "Studenthouse festivals administration"
+msgid "Studenthouse Festival Administration"
 msgstr "Studenterhuset's festival administration"
 
 #: northern_winter_beat/models.py:28 studenterhuset/settings.py:156

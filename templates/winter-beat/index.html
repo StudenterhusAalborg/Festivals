@@ -3,9 +3,8 @@
 {% load i18n %}
 {% load solo_tags %}
 {% block content %}
-    {% get_solo 'northern_winter_beat.winterbeatsettings' as settings %}
     <div class="statement">
-            {{ settings.top_text }}
+            {{ request.festival.top_text }}
     </div>
     <div class="row justify-content-center artists">
 
@@ -15,7 +14,7 @@
     </div>
     <div class="statement">
         <p>
-            {{ settings.bottom_text }}
+            {{ request.festival.bottom_text }}
         </p>
     </div>
     <!-- Modal -->
