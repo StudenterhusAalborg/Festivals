@@ -13,6 +13,7 @@ def set_festival_middleware(get_response):
         # the view (and later middleware) are called.
         parsed_url = urlparse(request.META['HTTP_HOST'])
         domain = parsed_url.netloc if parsed_url.netloc else parsed_url.path.split(":")[0]
+        domain = domain.replace("www.", "")
 
         festival = Festival.objects.filter(domain_name=domain).first()
 
