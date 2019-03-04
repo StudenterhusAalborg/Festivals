@@ -39,13 +39,13 @@
         {{ festival.top_text }}
     </div>
     {% if posts %}
-        <a class="navbar-item" href="{% url "way-up-north:list_posts" %}">{% trans 'News' %}</a>
+        <a class="navbar-item" href="{% url "festivals:list_posts" %}">{% trans 'News' %}</a>
     {% endif %}
     {% if request.festival.show_schedule %}
-        <a class="navbar-item" href="{% url "way-up-north:schedule" %}">{% trans 'Schedule' %}</a>
+        <a class="navbar-item" href="{% url "festivals:schedule" %}">{% trans 'Schedule' %}</a>
     {% endif %}
     {% for page in pages %}
-        <a class="navbar-item" href="{% url "way-up-north:page" page.slug %}">{{ page.title }}</a>
+        <a class="navbar-item" href="{% url "festivals:page" page.slug %}">{{ page.title }}</a>
     {% endfor %}
     {% include 'way-up-north/partials/static_nav_bar_elements.html' %}
 </div>
