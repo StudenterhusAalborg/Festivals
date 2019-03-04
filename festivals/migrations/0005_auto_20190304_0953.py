@@ -12,6 +12,7 @@ def forwards_func(apps, schema_editor):
     Festival.objects.create(
         name="Way Up North",
         domain_name="wayupnorth.dk",
+        theme="way-up-north",
         top_text_da="15. - 16. marts",
         top_text_en="15. - 16. march",
         bottom_text_da="Konferencierne: Carsten Holm • Jonny Hefty • Mark Jensen-Skovgaard",
@@ -27,6 +28,7 @@ def forwards_func(apps, schema_editor):
     Festival.objects.create(
         name="Northern Winter Beat",
         domain_name="winterbeat.dk",
+        theme="winter-beat",
         top_text_da="Vi ses i 2020!",
         top_text_en="See you in 2020!",
         bottom_text_da="",
@@ -45,4 +47,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+
+        migrations.RunPython(forwards_func, lambda x,y: None),
     ]
