@@ -38,13 +38,13 @@
     <div class="navbar-item">
         {{ festival.top_text }}
     </div>
-    {% if posts %}
+    {% if request.festival.posts %}
         <a class="navbar-item" href="{% url "festivals:list_posts" %}">{% trans 'News' %}</a>
     {% endif %}
     {% if request.festival.show_schedule %}
         <a class="navbar-item" href="{% url "festivals:schedule" %}">{% trans 'Schedule' %}</a>
     {% endif %}
-    {% for page in pages %}
+    {% for page in request.festival.pages %}
         <a class="navbar-item" href="{% url "festivals:page" page.slug %}">{{ page.title }}</a>
     {% endfor %}
     {% include 'way-up-north/partials/static_nav_bar_elements.html' %}
