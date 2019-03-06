@@ -28,7 +28,7 @@ class FestivalAdmin(admin.ModelAdmin):
 
 
 @admin.register(Stage)
-class StageAdmin(admin.ModelAdmin):
+class StageAdmin(OrderableAdmin):
     exclude = ["pk", "sort_order"]
     list_display = ["name", "festival", "sort_order_display"]
 
@@ -57,7 +57,9 @@ class ConcertAdmin(OrderableAdmin):
 @admin.register(Artist)
 class ArtistAdmin(OrderableAdmin, SummernoteModelAdmin):
     exclude = ["pk", "slug", "sort_order"]
-    list_display = ["name", "release_date", "subtitle", "concert_time", "stage", 'sort_order_display']
+    list_display = [
+        "name", "release_date", "subtitle", "date", "concert_time", "stage", 'sort_order_display'
+    ]
     summernote_fields = ["description_da", "description_en"]
 
 

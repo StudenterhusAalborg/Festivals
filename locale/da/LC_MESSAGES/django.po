@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-06 14:26+0100\n"
+"POT-Creation-Date: 2019-03-06 15:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,222 +26,223 @@ msgstr "Studenterhuset's Festivaler"
 msgid "Studenthouse Festival Administration"
 msgstr "Studenterhuset's festival administration"
 
-#: festivals/models.py:28 northern_winter_beat/models.py:28
+#: festivals/models.py:29 northern_winter_beat/models.py:28
 #: studenterhuset/settings.py:162
 msgid "Danish"
 msgstr "Dansk"
 
-#: festivals/models.py:28 northern_winter_beat/models.py:28
+#: festivals/models.py:29 northern_winter_beat/models.py:28
 #: studenterhuset/settings.py:161
 msgid "English"
 msgstr "Engelsk"
 
-#: festivals/models.py:42 northern_winter_beat/models.py:36
+#: festivals/models.py:43 northern_winter_beat/models.py:36
 msgid "Top text"
 msgstr "Øverste text"
 
-#: festivals/models.py:43 northern_winter_beat/models.py:37
+#: festivals/models.py:44 northern_winter_beat/models.py:37
 msgid "the paragraph above the list of bands. Is hidden if empty"
 msgstr "paragraffen over listen af bands. Den er gemt hvis denne er tom."
 
-#: festivals/models.py:49 northern_winter_beat/models.py:42
+#: festivals/models.py:50 northern_winter_beat/models.py:42
 msgid "Bottom text"
 msgstr "Bund text"
 
-#: festivals/models.py:50 northern_winter_beat/models.py:43
+#: festivals/models.py:51 northern_winter_beat/models.py:43
 msgid "The paragraph below the list of bands. It is hidden if empty"
 msgstr "Paragraffen over listen af bands. Den er gemt hvis denne er tom."
 
-#: festivals/models.py:56 northern_winter_beat/models.py:48
+#: festivals/models.py:57 northern_winter_beat/models.py:48
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: festivals/models.py:58 northern_winter_beat/models.py:49
+#: festivals/models.py:59 northern_winter_beat/models.py:49
 msgid ""
 "The description that is used when linking to winterbeat from another page"
 msgstr ""
 "Beskrivelsen der bliver brugt når man linker til winterbeat fra et andet "
 "website (evt facebook)"
 
-#: festivals/models.py:63 northern_winter_beat/models.py:54
+#: festivals/models.py:64 northern_winter_beat/models.py:54
 msgid "Show navigation bar"
 msgstr "Vis navigations bar"
 
-#: festivals/models.py:64 northern_winter_beat/models.py:55
+#: festivals/models.py:65 northern_winter_beat/models.py:55
 msgid "Show the bar of pages on top or not."
 msgstr ""
 "Skal navigations baren (af under sider) vises eller ej (den der er i toppen)"
 
-#: festivals/models.py:69 northern_winter_beat/models.py:60
+#: festivals/models.py:70 northern_winter_beat/models.py:60
 msgid "Show schedule"
 msgstr "Vis tidsplan"
 
-#: festivals/models.py:70 northern_winter_beat/models.py:61
+#: festivals/models.py:71 northern_winter_beat/models.py:61
 msgid "Show the page with the date each artist is going to play"
 msgstr "Vis siden med datoerne for hvornår hver artist spiller"
 
-#: festivals/models.py:75 northern_winter_beat/models.py:66
+#: festivals/models.py:76 northern_winter_beat/models.py:66
 msgid "Link to Youtube"
 msgstr "Link til Youtube"
 
-#: festivals/models.py:77 northern_winter_beat/models.py:67
+#: festivals/models.py:78 northern_winter_beat/models.py:67
 msgid "If you have a link to a playlist on Youtube relevant to the festival"
 msgstr ""
 "Hvis du vil have et link til en playliste på youtube som er relevant for "
 "festivalen"
 
-#: festivals/models.py:84 northern_winter_beat/models.py:74
+#: festivals/models.py:85 northern_winter_beat/models.py:74
 msgid "Link to Spotify"
 msgstr "Link til spotify"
 
-#: festivals/models.py:86 northern_winter_beat/models.py:75
+#: festivals/models.py:87 northern_winter_beat/models.py:75
 msgid "If you have a link to a playlist on Spotify relevant to the festival"
 msgstr ""
 "Hvis du vil have et link til en playlist på spotify, som er relevant for "
 "festivalen"
 
-#: festivals/models.py:93
+#: festivals/models.py:94
 msgid "Link to Facebook"
 msgstr "Link til Facebook"
 
-#: festivals/models.py:94
+#: festivals/models.py:95
 msgid "If you have a link to a facebook page"
 msgstr "Hvis du har et link til en relevant facebook side"
 
-#: festivals/models.py:101
+#: festivals/models.py:102
 msgid "Link to Instagram"
 msgstr "Link til Instagram"
 
-#: festivals/models.py:102
+#: festivals/models.py:103
 msgid "If you have a link to a instagram page"
 msgstr "Hvis du har en link til en relevant instagram side"
 
-#: festivals/models.py:108 northern_winter_beat/models.py:82
+#: festivals/models.py:109 northern_winter_beat/models.py:82
+#: templates/way-up-north/partials/static_nav_bar_elements.html:7
 msgid "Link to tickets"
 msgstr "Link til billetter"
 
-#: festivals/models.py:109 northern_winter_beat/models.py:83
+#: festivals/models.py:110 northern_winter_beat/models.py:83
 msgid "This link will show up as the tickets sales"
 msgstr "Dette link vil blive vist til billet salg"
 
-#: festivals/models.py:116 northern_winter_beat/models.py:90
+#: festivals/models.py:117 northern_winter_beat/models.py:90
 msgid "Start date"
 msgstr "Start dato"
 
-#: festivals/models.py:117 northern_winter_beat/models.py:91
+#: festivals/models.py:118 northern_winter_beat/models.py:91
 msgid "The date the festival starts"
 msgstr "datoen festivalen starter"
 
-#: festivals/models.py:121 northern_winter_beat/models.py:95
+#: festivals/models.py:122 northern_winter_beat/models.py:95
 msgid "End date"
 msgstr "Slut dato"
 
-#: festivals/models.py:122 northern_winter_beat/models.py:96
+#: festivals/models.py:123 northern_winter_beat/models.py:96
 msgid "The date the festival ends"
 msgstr "Datoen festivalen slutter"
 
-#: festivals/models.py:137
+#: festivals/models.py:138
 msgid "Festival"
 msgstr "Festival"
 
-#: festivals/models.py:138
+#: festivals/models.py:139
 msgid "Festivals"
 msgstr "Festivaler"
 
-#: festivals/models.py:145 festivals/models.py:329
+#: festivals/models.py:146 festivals/models.py:334
 #: northern_winter_beat/models.py:116 northern_winter_beat/models.py:229
 #: northern_winter_beat/models.py:274
 msgid "title"
 msgstr "titel"
 
-#: festivals/models.py:149 northern_winter_beat/models.py:120
+#: festivals/models.py:150 northern_winter_beat/models.py:120
 msgid "slug"
 msgstr "slug"
 
-#: festivals/models.py:155 festivals/models.py:334
+#: festivals/models.py:156 festivals/models.py:339
 #: northern_winter_beat/models.py:126 northern_winter_beat/models.py:279
 msgid "body"
 msgstr "Krop"
 
-#: festivals/models.py:175 northern_winter_beat/models.py:146
+#: festivals/models.py:176 northern_winter_beat/models.py:146
 msgid "page"
 msgstr "side"
 
-#: festivals/models.py:176 northern_winter_beat/models.py:147
+#: festivals/models.py:177 northern_winter_beat/models.py:147
 msgid "pages"
 msgstr "sider"
 
-#: festivals/models.py:182 festivals/models.py:210
+#: festivals/models.py:183 festivals/models.py:211
 #: northern_winter_beat/models.py:157
 msgid "name"
 msgstr "navn"
 
-#: festivals/models.py:184
+#: festivals/models.py:185
 msgid "The name of the stage"
 msgstr "Navnet på scenen"
 
-#: festivals/models.py:188
+#: festivals/models.py:189
 msgid "festival"
 msgstr "festival"
 
-#: festivals/models.py:189
+#: festivals/models.py:190
 msgid "The festival that the stage is used on"
 msgstr "Festivalen som scenen bliver brugt under"
 
-#: festivals/models.py:214 northern_winter_beat/models.py:161
+#: festivals/models.py:215 northern_winter_beat/models.py:161
 msgid "One line"
 msgstr "En linje"
 
-#: festivals/models.py:216 northern_winter_beat/models.py:163
+#: festivals/models.py:217 northern_winter_beat/models.py:163
 msgid "Do you want title on splash screen on one singular line?"
 msgstr "Vil du have titlen på start siden, på en linje for sig selv?"
 
-#: festivals/models.py:220 northern_winter_beat/models.py:167
+#: festivals/models.py:221 northern_winter_beat/models.py:167
 msgid "description"
 msgstr "beskrivelse"
 
-#: festivals/models.py:225 northern_winter_beat/models.py:172
+#: festivals/models.py:226 northern_winter_beat/models.py:172
 msgid "subtitle"
 msgstr "under-titel"
 
-#: festivals/models.py:235 northern_winter_beat/models.py:182
+#: festivals/models.py:236 northern_winter_beat/models.py:182
 msgid "Release date"
 msgstr "offentliggørelsestidspunkt"
 
-#: festivals/models.py:236 northern_winter_beat/models.py:183
+#: festivals/models.py:237 northern_winter_beat/models.py:183
 msgid "The time when this band is going to be released on the website."
 msgstr "Tidspunktet dette band skal offentligtgøres"
 
-#: festivals/models.py:242
+#: festivals/models.py:243
 msgid "stage"
 msgstr "scene"
 
-#: festivals/models.py:243
+#: festivals/models.py:244
 msgid "The stage that the concert will be on"
 msgstr "Scenen som koncerten bliver holdt på"
 
-#: festivals/models.py:250
+#: festivals/models.py:251
 msgid "concert time"
 msgstr "koncert tidspunkt"
 
-#: festivals/models.py:251
-msgid "The time of the concert"
-msgstr "Det tidspunkt koncerten starter"
+#: festivals/models.py:253
+msgid "The time of the concert. if it's after midnight, it is another date!"
+msgstr ""
 
-#: festivals/models.py:320 northern_winter_beat/models.py:216
+#: festivals/models.py:325 northern_winter_beat/models.py:216
 #: northern_winter_beat/models.py:224
 msgid "artist"
 msgstr "artist"
 
-#: festivals/models.py:321 northern_winter_beat/models.py:217
+#: festivals/models.py:326 northern_winter_beat/models.py:217
 msgid "artists"
 msgstr "artister"
 
-#: festivals/models.py:349 northern_winter_beat/models.py:294
+#: festivals/models.py:354 northern_winter_beat/models.py:294
 msgid "post"
 msgstr "opslag"
 
-#: festivals/models.py:350 northern_winter_beat/models.py:295
+#: festivals/models.py:355 northern_winter_beat/models.py:295
 msgid "posts"
 msgstr "opslag"
 
@@ -294,12 +295,6 @@ msgstr "Nyheder"
 msgid "Schedule"
 msgstr "Tidsplan"
 
-#: templates/way-up-north/partials/static_nav_bar_elements.html:7
-#, fuzzy
-#| msgid "Link to tickets"
-msgid "link to tickets"
-msgstr "Link til billetter"
-
 #: templates/way-up-north/partials/static_nav_bar_elements.html:12
 #: templates/way-up-north/partials/static_nav_bar_elements.html:17
 #: templates/way-up-north/partials/static_nav_bar_elements.html:22
@@ -314,6 +309,14 @@ msgstr "Lineup"
 #: templates/winter-beat/base.html:47
 msgid "Tickets"
 msgstr "Billetter"
+
+#~ msgid "The time of the concert"
+#~ msgstr "Det tidspunkt koncerten starter"
+
+#, fuzzy
+#~| msgid "Link to tickets"
+#~ msgid "link to tickets"
+#~ msgstr "Link til billetter"
 
 #~| msgid "Tickets"
 #~ msgid "tickets"

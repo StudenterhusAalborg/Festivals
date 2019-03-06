@@ -249,7 +249,9 @@ class Artist(Orderable):
 
     concert_time = models.DateTimeField(
         ugettext_lazy("concert time"),
-        help_text=ugettext_lazy('The time of the concert'),
+        help_text=ugettext_lazy(
+            'The time of the concert. if it\'s after midnight, it is another date!'
+        ),
         blank=True,
         null=True,
     )
