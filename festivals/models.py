@@ -1,3 +1,4 @@
+from datetime import timedelta
 from typing import Type, Tuple
 
 from django.core.exceptions import ValidationError
@@ -270,7 +271,9 @@ class Artist(Orderable):
 
     @property
     def date(self):
-        return self.concert_time.date()
+        delta = timedelta(days=1 if self.concert_time.hour < 12 else 0)
+
+        return self.concert_time.date() - delta
 
     @property
     def description(self):
