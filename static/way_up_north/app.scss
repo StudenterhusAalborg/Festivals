@@ -44,14 +44,6 @@ body {
 
   }
   .artist {
-    white-space: nowrap;
-
-    &.clickable:hover {
-      color: $grey-dark !important;
-      background-color: $white;
-      cursor: pointer;
-    }
-
     &:after {
       @media(max-width:$phone-size) {
         content: "\A";
@@ -62,6 +54,14 @@ body {
 
   }
 }
+.artist {
+  &.clickable:hover {
+    color: $grey-dark !important;
+    background-color: $white;
+    cursor: pointer;
+  }
+  white-space: nowrap;
+}
 
 .navbar {
   justify-content: left;
@@ -70,7 +70,7 @@ body {
     color: $white;
 
     &:not(:last-child) {
-    margin-right: 10px
+      margin-right: 10px
 
     }
 
@@ -100,6 +100,16 @@ body {
   }
 
 }
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+}
+h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
 .crystals {
   overflow: hidden;
   .crystal {

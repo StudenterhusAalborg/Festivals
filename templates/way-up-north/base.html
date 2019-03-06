@@ -22,7 +22,7 @@
 </head>
 <body>
 <div class="logo">
-    <img src="{% static 'images/way_up_north/wun_white.png' %}"/>
+    <a href="{% url "festivals:home" %}"><img src="{% static 'images/way_up_north/wun_white.png' %}"/></a>
 </div>
 <div class="crystals">
     <div class="crystal top">
@@ -36,13 +36,13 @@
 
 <div class="navbar">
     <div class="navbar-item">
-        {{ festival.top_text }}
+        {{ request.festival.top_text }}
     </div>
     {% if request.festival.posts %}
         <a class="navbar-item" href="{% url "festivals:list_posts" %}">{% trans 'News' %}</a>
     {% endif %}
     {% if request.festival.show_schedule %}
-        <a class="navbar-item" href="{% url "festivals:schedule" %}">{% trans 'Schedule' %}</a>
+        <a title="{% trans 'Schedule' %}" class="navbar-item" href="{% url "festivals:schedule" %}"><i class="fas fa-calendar-alt"></i></a>
     {% endif %}
     {% for page in request.festival.pages %}
         <a class="navbar-item" href="{% url "festivals:page" page.slug %}">{{ page.title }}</a>

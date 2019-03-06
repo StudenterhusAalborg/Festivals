@@ -4,23 +4,28 @@
 {% load solo_tags %}
 
 {% if request.festival.ticket_link %}
-    <a class="navbar-item" href="{{ request.festival.ticket_link }}" target="_blank">
+    <a class="navbar-item" title="{% trans 'Link to tickets' %}" href="{{ request.festival.ticket_link }}" target="_blank">
         <i class="fas fa-ticket-alt"></i>
     </a>
 {% endif %}
+{% if request.festival.instagram_link %}
+    <a class="navbar-item" title="{% trans 'open' %} instagram" href="{{ request.festival.instagram_link }}" target="_blank">
+        <i class="fab fa-instagram"></i>
+    </a>
+{% endif %}
 {% if request.festival.facebook_link %}
-    <a class="navbar-item" href="{{ request.festival.facebook_link }}" target="_blank">
+    <a class="navbar-item" title="{% trans 'open' %} facebook" href="{{ request.festival.facebook_link }}" target="_blank">
         <i class="fab fa-facebook-square"></i>
     </a>
 {% endif %}
 {% if request.festival.youtube_link %}
-    <a class="navbar-item" href="{{ request.festival.youtube_link }}" target="_blank">
+    <a class="navbar-item" title="{% trans 'open' %} youtube playlist" href="{{ request.festival.youtube_link }}" target="_blank">
         <i class="fab fa-youtube"></i>
     </a>
 {% endif %}
 
 {% if request.festival.spotify_link %}
-    <a class="navbar-item" href="{{ request.festival.spotify_link }}" target="_blank">
+    <a class="navbar-item" title="{% trans 'open' %} spotify playlist" href="{{ request.festival.spotify_link }}" target="_blank">
         <i class="fab fa-spotify"></i>
     </a>
 {% endif %}

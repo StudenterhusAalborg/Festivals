@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy
 from django_summernote.admin import SummernoteModelAdmin
 from orderable.admin import OrderableAdmin
 
-from festivals.models import Page, Artist, Post, Festival, Concert
+from festivals.models import Page, Artist, Post, Festival, Stage
 
 
 class MyAdminSite(AdminSite):
@@ -27,13 +27,19 @@ class FestivalAdmin(admin.ModelAdmin):
     list_display = ["__str__"]
 
 
+@admin.register(Stage)
+class StageAdmin(admin.ModelAdmin):
+    exclude = ["pk", "sort_order"]
+    list_display = ["name", "festival"]
+
+
 @admin.register(Page)
 class PageAdmin(SummernoteModelAdmin):
     exclude = ["pk", "slug"]
     summernote_fields = ["body_da", "body_en"]
 
 
-@admin.register(Concert)
+#@admin.register(Concert)
 class ConcertAdmin(OrderableAdmin):
     exclude = ["pk", "sort_order"]
     list_display = ["__str__", "date", "sort_order_display"]
@@ -45,7 +51,7 @@ class ConcertAdmin(OrderableAdmin):
         :param request:
         :return:
         """
-        return {'date': Festival.get_solo().start_date}
+        return None# {'date': Festival.get_solo().start_date}
 
 
 @admin.register(Artist)
@@ -60,4 +66,3 @@ class PostAdmin(SummernoteModelAdmin):
     exclude = ["pk", "slug"]
     list_display = ["title", "created"]
     summernote_fields = ["body_da", "body_en"]
-

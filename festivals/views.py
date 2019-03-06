@@ -35,7 +35,14 @@ def show_artist(request, artist_slug):
 
 @festival_required
 def schedule(request):
-    return render(request, request.festival.theme + "/static_schedule.html")
+    context = {
+        'artists': Artist.objects.filter(
+            stage__festival=request.festival
+        ).exclude(
+            stage=None, concert_time=None
+        )
+    }
+    return render(request, request.festival.theme + "/schedule.html", context)
     # concerts = Concert.objects.all().order_by("date", "sort_order")
     # return render(request, "winter-beat/schedule.html", {"concerts": concerts})
 

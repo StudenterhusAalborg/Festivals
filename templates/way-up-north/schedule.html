@@ -2,10 +2,24 @@
 {% load color_helpers %}
 {% load i18n %}
 {% block content %}
-    <div class="artists">
-        {% for artist in artists %}
-            {{ artist.as_link }}
-        {% endfor %}
+    <div class="schedule">
+
+        {% regroup artists by date as dates %}
+
+        <div class="row">
+            {% for date in dates %}
+                <div class="col-md-6 col-sm-12" style="margin-bottom: 30px">
+                    <h1>{{ date.grouper|date:"l d M" }}</h1>
+                    {% regroup date.list|dictsort:"stage.pk" by stage as stages %}
+                    {% for stage in stages %}
+                        <h2>{{ stage.grouper.name }}</h2>
+                        {% for artist in stage.list %}
+                            {{ artist.as_schedule_link }}<br>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
     <div class="statement">
         <p>

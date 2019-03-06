@@ -69,16 +69,17 @@ body {
       text-align: right; } }
   .artists .sep:not(:last-child)::before {
     content: '•'; }
-  .artists .artist {
-    white-space: nowrap; }
-    .artists .artist.clickable:hover {
-      color: #202020 !important;
-      background-color: #ffffff;
-      cursor: pointer; }
-    @media (max-width: 650px) {
-      .artists .artist:after {
-        content: "\A";
-        white-space: pre; } }
+  @media (max-width: 650px) {
+    .artists .artist:after {
+      content: "\A";
+      white-space: pre; } }
+
+.artist {
+  white-space: nowrap; }
+  .artist.clickable:hover {
+    color: #202020 !important;
+    background-color: #ffffff;
+    cursor: pointer; }
 
 .navbar {
   justify-content: left;
@@ -105,6 +106,14 @@ body {
   .logo img {
     width: 100%; }
 
+h1 {
+  font-size: 3.5rem;
+  font-weight: 800; }
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 600; }
+
 .crystals {
   overflow: hidden; }
   .crystals .crystal {
@@ -118,7 +127,7 @@ body {
       width: 20vw; }
       @media (max-width: 650px) {
         .crystals .crystal.top {
-          width: 30vw; } }
+          width: 40vw; } }
     .crystals .crystal.bottom {
       bottom: 0;
       left: 0;

@@ -13,7 +13,8 @@ from orderable.managers import OrderableManager
 from orderable.models import Orderable
 
 
-def create_field_for_both_languages(field_type: Type[Field], pretty_name: str, **kwargs) -> Tuple[Field, Field]:
+def create_field_for_both_languages(field_type: Type[Field], pretty_name: str, **kwargs) -> Tuple[
+    Field, Field]:
     """
     helper for making the same textfield for danish and english.
     :param field_type:
@@ -53,7 +54,8 @@ class Festival(models.Model):
 
     description = models.TextField(
         ugettext_lazy("Description"),
-        help_text=ugettext_lazy("The description that is used when linking to winterbeat from another page"),
+        help_text=ugettext_lazy(
+            "The description that is used when linking to winterbeat from another page"),
         default=""
     )
 
@@ -71,7 +73,8 @@ class Festival(models.Model):
 
     youtube_link = models.CharField(
         ugettext_lazy("Link to Youtube"),
-        help_text=ugettext_lazy("If you have a link to a playlist on Youtube relevant to the festival"),
+        help_text=ugettext_lazy(
+            "If you have a link to a playlist on Youtube relevant to the festival"),
         max_length=255,
         null=True,
         blank=True
@@ -79,7 +82,8 @@ class Festival(models.Model):
 
     spotify_link = models.CharField(
         ugettext_lazy("Link to Spotify"),
-        help_text=ugettext_lazy("If you have a link to a playlist on Spotify relevant to the festival"),
+        help_text=ugettext_lazy(
+            "If you have a link to a playlist on Spotify relevant to the festival"),
         max_length=255,
         null=True,
         blank=True,
@@ -125,6 +129,7 @@ class Festival(models.Model):
     def bottom_text(self):
         return mark_safe(self.bottom_text_da if get_language() == "da" else self.bottom_text_en)
 
+    @property
     def top_text(self):
         return mark_safe(self.top_text_da if get_language() == "da" else self.top_text_en)
 
@@ -171,6 +176,29 @@ class Page(models.Model):
         verbose_name_plural = ugettext_lazy("pages")
 
 
+class Stage(Orderable):
+    name_da, name_en = create_field_for_both_languages(
+        models.CharField,
+        ugettext_lazy("name"),
+        max_length=128,
+        help_text=ugettext_lazy('The name of the stage'),
+    )
+    festival = models.ForeignKey(
+        Festival,
+        verbose_name=ugettext_lazy("festival"),
+        help_text=ugettext_lazy("The festival that the stage is used on"),
+        on_delete=models.CASCADE,
+    )
+
+
+    @property
+    def name(self):
+        return self.name_da if get_language() == "da" else self.name_en
+
+    def __str__(self):
+        return f"{self.name} ({self.festival})"
+
+
 class ArtistManager(OrderableManager):
     def released(self):
         return self.filter(release_date__lte=now())
@@ -209,10 +237,28 @@ class Artist(Orderable):
         default=now
     )
 
+    stage = models.ForeignKey(
+        Stage,
+        verbose_name=ugettext_lazy("stage"),
+        help_text=ugettext_lazy("The stage that the concert will be on"),
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+    )
+
+    concert_time = models.DateTimeField(
+        ugettext_lazy("concert time"),
+        help_text=ugettext_lazy('The time of the concert'),
+        blank=True,
+        null=True,
+    )
+
     objects = ArtistManager()
 
     def save(self, **kwargs):
         self.slug = slugify(self.name)
+        if self.festival != self.stage.festival:
+            raise ValidationError("Artist cannot play at a stage that isn't ")
         super().save(**kwargs)
 
     def __str__(self):
@@ -223,75 +269,57 @@ class Artist(Orderable):
         return len(self.name)
 
     @property
+    def date(self):
+        return self.concert_time.date()
+
+    @property
     def description(self):
         return self.description_da if get_language() == "da" else self.description_en
 
     @property
     def body(self):
-        out = mark_safe(self.description + (f"<br><br> {self.embedded_youtube}" if self.youtube_video_link else ""))
-        return out
+        return mark_safe(
+            self.description +
+            (f"<br><br> {self.embedded_youtube}" if self.youtube_video_link else "")
+        )
+
+    @property
+    def as_link(self):
+        classes = " ".join(["artist", "clickable" if self.body else ""])
+        modal_attributes = "data-toggle='modal'  data-target='#exampleModal' " \
+            f"onclick='setModal({self.pk})'"
+        name = " ".join([
+            self.name,
+            f"<p class='subtitle'>{self.subtitle}</p>" if self.subtitle else ""
+        ])
+        return mark_safe(
+            f"<a class='{classes}' {modal_attributes if self.body else ''}> {name} </a>"
+        )
+
+    @property
+    def as_schedule_link(self):
+        classes = " ".join(["artist", "clickable" if self.body else ""])
+        modal_attributes = "data-toggle='modal'  data-target='#exampleModal' " \
+            f"onclick='setModal({self.pk})'"
+        name = " ".join([
+            self.concert_time.strftime('%H:%M'),
+            self.name,
+            f"<p class='subtitle'>{self.subtitle}</p>" if self.subtitle else ""
+        ])
+        return mark_safe(
+            f"<a class='{classes}' {modal_attributes if self.body else ''}> {name} </a>"
+        )
 
     @property
     def embedded_youtube(self):
         link = self.youtube_video_link.replace("watch?v=", "embed/")
         return f'<div class="embed-responsive embed-responsive-16by9"><iframe src="{link}" width="100%" ' \
-               f'class="embed-responsive-item" allowfullscreen></iframe></div> '
+            f'class="embed-responsive-item" allowfullscreen></iframe></div> '
 
     class Meta(Orderable.Meta):
         verbose_name = ugettext_lazy("artist")
         verbose_name_plural = ugettext_lazy("artists")
         ordering = ("sort_order",)
-
-
-class Concert(Orderable):
-    festival = models.ForeignKey(Festival, on_delete=models.CASCADE)
-    artist = models.ForeignKey(
-        Artist,
-        verbose_name=ugettext_lazy('artist'),
-        help_text=ugettext_lazy('The artist that is going to play the concert'),
-        on_delete=models.CASCADE)
-
-    title = models.CharField(
-        verbose_name=ugettext_lazy('title'),
-        max_length=128,
-        help_text=ugettext_lazy('If you want the title to be something else than the artist name'),
-        blank=True,
-        null=True
-    )
-
-    sub_title = models.CharField(
-        max_length=128,
-        blank=True,
-        null=True,
-    )
-
-    date = models.DateField(
-        ugettext_lazy("date"),
-        help_text=ugettext_lazy('The day the artist is going to play'),
-        blank=True,
-        null=True,
-    )
-
-    def clean(self):
-        super().clean()
-        if not self.festival.start_date <= self.date <= self.festival.end_date:
-            raise ValidationError(
-                ugettext(
-                    "Concert date has to be while the festival is "
-                    "running (between %(start_date)s and %(end_date)s)"
-                ) % {
-                    'start_date': self.festival.start_date.strftime('%x'),
-                    'end_date': self.festival.end_date.strftime('%x')
-                }
-            )
-
-    def __str__(self):
-        title = (self.title or self.artist.name) + (f" {self.sub_title}" if self.sub_title else "")
-        return f"{title} - {self.date:%a}"
-
-    class Meta(Orderable.Meta):
-        verbose_name = ugettext_lazy("concert")
-        verbose_name_plural = ugettext_lazy("concerts")
 
 
 class Post(models.Model):
@@ -321,4 +349,3 @@ class Post(models.Model):
         verbose_name = ugettext_lazy("post")
         verbose_name_plural = ugettext_lazy("posts")
         ordering = ('-created',)
-
