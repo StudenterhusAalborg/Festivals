@@ -4,7 +4,7 @@
 {% block content %}
     <div class="schedule">
 
-        {% regroup artists by date as dates %}
+        {% regroup artists|dictsort:"date" by date as dates %}
 
         <div class="row">
             {% for date in dates %}
