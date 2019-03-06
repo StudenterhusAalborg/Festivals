@@ -10,7 +10,7 @@
             {% for date in dates %}
                 <div class="col-md-6 col-sm-12" style="margin-bottom: 30px">
                     <h1>{{ date.grouper|date:"l d M" }}</h1>
-                    {% regroup date.list|dictsort:"stage.pk" by stage as stages %}
+                    {% regroup date.list|dictsort:"stage.sort_order" by stage as stages %}
                     {% for stage in stages %}
                         <h2>{{ stage.grouper.name }}</h2>
                         {% for artist in stage.list|dictsort:"concert_time" %}
