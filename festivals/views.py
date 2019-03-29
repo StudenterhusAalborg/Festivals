@@ -17,9 +17,8 @@ def index(request):
 @festival_required
 def show_page(request, page_slug):
     page = get_object_or_404(Page, slug=page_slug, festival=request.festival)
-
     return render(request, request.festival.theme + "/page.html", {
-        "page": page,
+        "post": page,
     })
 
 

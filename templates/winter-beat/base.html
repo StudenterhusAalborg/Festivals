@@ -36,24 +36,28 @@
 
         {%  if request.festival.show_nav_bar %}
             <div class="navbar">
-                {% if posts %}
-                    <a class="navbar-item" href="{% url "winterbeat:list_posts" %}">{% trans 'News' %}</a>
+                {% if request.festival.post_set.all %}
+                    <a class="navbar-item" href="{% url "festivals:list_posts" %}">{% trans 'News' %}</a>
                 {% endif %}
-                <a class="navbar-item" href="{% url "winterbeat:home" %}">{% trans 'Lineup' %}</a>
+
+                <a class="navbar-item" href="{% url "festivals:home" %}">
+                    {% if request.festival.artist_set.all %}
+                        {% trans 'Lineup' %}
+                    {% else %}
+                        {% trans 'Home' %}
+                    {% endif %}
+                </a>
+
                 {% if request.festival.show_schedule %}
-                    <a class="navbar-item" href="{% url "winterbeat:schedule" %}">{% trans 'Schedule' %}</a>
+                    <a class="navbar-item" href="{% url "festivals:schedule" %}">{% trans 'Schedule' %}</a>
                 {% endif %}
                 {% if request.festival.ticket_link %}
                     <a class="navbar-item" href="{{ request.festival.ticket_link }}">{% trans 'Tickets' %}</a>
                 {% endif %}
-                {% for page in pages %}
-                    <a class="navbar-item" href="{% url "winterbeat:page" page.slug %}">{{ page.title }}</a>
+                {% for page in request.festival.page_set.all %}
+                    <a class="navbar-item" href="{% url "festivals:page" page.slug %}">{{ page.title }}</a>
                 {% endfor %}
                 {% include 'partials/static_nav_bar_elements.html' %}
-            </div>
-
-            <div class="statement">
-                {% include 'partials/time-from-to.html' %}
             </div>
         {% endif %}
     </div>

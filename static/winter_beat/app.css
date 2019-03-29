@@ -186,6 +186,8 @@
   /*#ecded6;*/
   margin: 30px auto 50px;
   text-align: left; }
+  .card.post {
+    width: 100%; }
   .card .box.header {
     cursor: default;
     margin: -25px -10px 25px; }

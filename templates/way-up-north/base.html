@@ -38,14 +38,14 @@
     <div class="navbar-item">
         {{ request.festival.top_text }}
     </div>
-    {% if request.festival.posts %}
+    {% if request.festival.post_set.all %}
         <a class="navbar-item" href="{% url "festivals:list_posts" %}">{% trans 'News' %}</a>
     {% endif %}
     {% if request.festival.show_schedule %}
         <a title="{% trans 'Schedule' %}" class="navbar-item" href="{% url "festivals:schedule" %}"><i class="fas fa-calendar-alt"></i></a>
     {% endif %}
-    {% for page in request.festival.pages %}
-        <a class="navbar-item" href="{% url "festivals:page" page.slug %}">{{ page.title }}</a>
+    {% for page in request.festival.page_set.all %}
+        <a class="navbar-item" href="{% url 'festivals:page' page.slug %}">{{ page.title }}</a>
     {% endfor %}
     {% include 'way-up-north/partials/static_nav_bar_elements.html' %}
 </div>
