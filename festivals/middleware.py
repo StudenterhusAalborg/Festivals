@@ -12,12 +12,15 @@ def set_festival_middleware(get_response):
         # Code to be executed for each request before
         # the view (and later middleware) are called.
         parsed_url = urlparse(request.META['HTTP_HOST'])
-        domain = parsed_url.netloc if parsed_url.netloc else parsed_url.path.split(":")[0]
+        domain = parsed_url.netloc if parsed_url.netloc else parsed_url.path#.split(":")[0]
         domain = domain.replace("www.", "")
 
         festival = Festival.objects.filter(domain_name=domain).first()
 
         request.festival = festival
+        request.other_festivals = Festival.objects.exclude(domain_name=domain)
+        print(request)
+        print(request.other_festivals)
         response = get_response(request)
 
         # Code to be executed for each request/response after
