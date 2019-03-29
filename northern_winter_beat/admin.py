@@ -22,19 +22,19 @@ class MyAdminSite(AdminSite):
 admin_site = MyAdminSite()
 
 
-@admin.register(Festival)
+#@admin.register(Festival)
 class FestivalAdmin(admin.ModelAdmin):
     exclude = ["pk"]
     list_display = ["__str__"]
 
 
-@admin.register(Page)
+#@admin.register(Page)
 class PageAdmin(SummernoteModelAdmin):
     exclude = ["pk", "slug"]
     summernote_fields = ["body_da", "body_en"]
 
 
-@admin.register(Concert)
+#@admin.register(Concert)
 class ConcertAdmin(OrderableAdmin):
     exclude = ["pk", "sort_order"]
     list_display = ["__str__", "date", "sort_order_display"]
@@ -49,14 +49,14 @@ class ConcertAdmin(OrderableAdmin):
         return {'date': Festival.get_solo().start_date}
 
 
-@admin.register(Artist)
+#@admin.register(Artist)
 class ArtistAdmin(OrderableAdmin, SummernoteModelAdmin):
     exclude = ["pk", "slug", "sort_order"]
     list_display = ["name", "release_date", "subtitle", 'sort_order_display']
     summernote_fields = ["description_da", "description_en"]
 
 
-@admin.register(Post)
+#@admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
     exclude = ["pk", "slug"]
     list_display = ["title", "created"]
