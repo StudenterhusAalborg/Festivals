@@ -68,7 +68,7 @@ body {
   @media (max-width: 650px) {
     .artists {
       text-align: right; } }
-  .artists .sep:not(:last-child)::before {
+  .artists .sep::before {
     content: '•'; }
   @media (max-width: 650px) {
     .artists .artist:after {
