@@ -29,7 +29,3 @@
         <i class="fab fa-spotify"></i>
     </a>
 {% endif %}
-{% get_current_language as LANGUAGE_CODE %}
-<a class="navbar-item" href="/{% if LANGUAGE_CODE == "en"%}da{% else %}en{% endif %}/">
-    <img height="24" src="{% if LANGUAGE_CODE == "en" %}{% static "images/danish.png" %}{% else %}{% static "images/english.png" %}{% endif %}"/>
-</a>
